@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/trash_collection?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+
+#文件服务器(web服务器)
+fileServer:
+  # 文件服务器根目录
+  path: d:/home/data
+  # 图片存放地址
+  image: /image
+  # 上传文件存放地址
+  upload: /upload
+  # 模板文件存放地址
+  template: /template
+  # 图片大小
+  pictureMax: 5242880
+  # 附件大小
+  fileMax: 31457280

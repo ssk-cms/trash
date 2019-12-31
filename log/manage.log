@@ -1,0 +1,87 @@
+985  [INFO ] 2019-12-31 10:56:19 [main] c.t.c.trash.TrashApplication - Starting TrashApplication on DESKTOP-21NIJ09 with PID 4300 (started by qwe in F:\A-私人文件\垃圾回收管理系统\系统代码\trash)
+1000 [INFO ] 2019-12-31 10:56:19 [main] c.t.c.trash.TrashApplication - The following profiles are active: local
+1531 [DEBUG] 2019-12-31 10:56:19 [main] org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\TrashApplication.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\controller\MenuController.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\controller\OrgController.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\controller\RoleController.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\controller\RoleMenuController.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\controller\UserController.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\controller\UserOrgController.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\controller\UserRoleController.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\controller\UserTokenController.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\dao\MenuMapper.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\dao\OrgMapper.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\dao\RoleMapper.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\dao\RoleMenuMapper.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\dao\UserMapper.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\dao\UserOrgMapper.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\dao\UserRoleMapper.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\dao\UserTokenMapper.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\domain\Menu.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\domain\Org.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\domain\Role.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\domain\RoleMenu.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\domain\User.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\domain\UserOrg.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\domain\UserRole.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\domain\UserToken.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\MenuService.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\OrgService.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\RoleMenuService.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\RoleService.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\UserOrgService.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\UserRoleService.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\UserService.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\UserTokenService.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\impl\MenuServiceImpl.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\impl\OrgServiceImpl.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\impl\RoleMenuServiceImpl.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\impl\RoleServiceImpl.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\impl\UserOrgServiceImpl.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\impl\UserRoleServiceImpl.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\impl\UserServiceImpl.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Ignored because not a concrete top-level class: file [F:\A-私人文件\垃圾回收管理系统\系统代码\trash\target\classes\com\trash\collection\trash\user\service\impl\UserTokenServiceImpl.class]
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuMapper' and 'com.trash.collection.trash.user.dao.MenuMapper' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'menuMapper'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'orgMapper' and 'com.trash.collection.trash.user.dao.OrgMapper' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'orgMapper'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleMapper' and 'com.trash.collection.trash.user.dao.RoleMapper' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'roleMapper'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleMenuMapper' and 'com.trash.collection.trash.user.dao.RoleMenuMapper' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'roleMenuMapper'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userMapper' and 'com.trash.collection.trash.user.dao.UserMapper' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userOrgMapper' and 'com.trash.collection.trash.user.dao.UserOrgMapper' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userOrgMapper'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleMapper' and 'com.trash.collection.trash.user.dao.UserRoleMapper' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userRoleMapper'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userTokenMapper' and 'com.trash.collection.trash.user.dao.UserTokenMapper' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userTokenMapper'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuService' and 'com.trash.collection.trash.user.service.MenuService' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'menuService'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'orgService' and 'com.trash.collection.trash.user.service.OrgService' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'orgService'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleMenuService' and 'com.trash.collection.trash.user.service.RoleMenuService' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'roleMenuService'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleService' and 'com.trash.collection.trash.user.service.RoleService' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'roleService'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userOrgService' and 'com.trash.collection.trash.user.service.UserOrgService' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userOrgService'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleService' and 'com.trash.collection.trash.user.service.UserRoleService' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userRoleService'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userService' and 'com.trash.collection.trash.user.service.UserService' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userService'.
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userTokenService' and 'com.trash.collection.trash.user.service.UserTokenService' mapperInterface
+1547 [DEBUG] 2019-12-31 10:56:19 [main] o.m.s.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userTokenService'.
+2141 [INFO ] 2019-12-31 10:56:20 [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8001 (http)
+2141 [INFO ] 2019-12-31 10:56:20 [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8001"]
+2141 [INFO ] 2019-12-31 10:56:20 [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2141 [INFO ] 2019-12-31 10:56:20 [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2281 [INFO ] 2019-12-31 10:56:20 [main] o.a.c.c.C.[.[localhost].[/trash] - Initializing Spring embedded WebApplicationContext
+2281 [INFO ] 2019-12-31 10:56:20 [main] o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1250 ms
+2469 [DEBUG] 2019-12-31 10:56:20 [main] o.m.spring.SqlSessionFactoryBean - Property 'mapperLocations' was not specified or no matching resources found
+2687 [INFO ] 2019-12-31 10:56:21 [main] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2953 [INFO ] 2019-12-31 10:56:21 [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8001"]
+2969 [INFO ] 2019-12-31 10:56:21 [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8001 (http) with context path '/trash'
+2969 [INFO ] 2019-12-31 10:56:21 [main] c.t.c.trash.TrashApplication - Started TrashApplication in 2.72 seconds (JVM running for 4.324)
