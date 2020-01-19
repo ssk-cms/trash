@@ -4,10 +4,10 @@
 
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.trash.collection.trash.user.domain.UserOrg">
-                    <id column="id" property="id"/>
-                    <result column="user_id" property="userId"/>
-                    <result column="org_id" property="orgId"/>
-                    <result column="level" property="level"/>
+            <id column="id" property="id"/>
+            <result column="user_id" property="userId"/>
+            <result column="org_id" property="orgId"/>
+            <result column="level" property="level"/>
         </resultMap>
 
 </mapper>
