@@ -11,4 +11,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface ActivityMsgService extends IService<ActivityMsg> {
 
+    void addActivity(ActivityMsg activityMsg);
+
 }

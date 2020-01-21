@@ -11,6 +11,8 @@ import java.io.Serializable;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 
  *
@@ -32,6 +34,7 @@ public class ActivityMsg implements Serializable{
     /**
      * 活动标题
      */
+    @NotNull(message = "活动标题不能为空")
     @TableField("activity_title")
     private String activityTitle;
     /**
