@@ -8,9 +8,12 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -26,6 +29,10 @@ public class ActivityMsg implements Serializable{
 
     private static final long serialVersionUID=1L;
 
+//    活动正常状态
+    public static final Integer NORMAL_STATE = 1;
+//    活动禁止状态
+    public static final Integer FORBIDDEN_STATE = 0;
     /**
      * 活动id
      */
@@ -35,12 +42,14 @@ public class ActivityMsg implements Serializable{
      * 活动标题
      */
     @NotNull(message = "活动标题不能为空")
+    @NotEmpty(message = "活动标题不能为空")
     @TableField("activity_title")
     private String activityTitle;
     /**
      * 活动内容
      */
     @TableField("activity_content")
+    @NotNull(message = "活动内容不能为空")
     private String activityContent;
     /**
      * 活动图片地址
@@ -51,6 +60,7 @@ public class ActivityMsg implements Serializable{
      * 活动时间
      */
     @TableField("activity_time")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date activityTime;
     /**
      * 友情链接

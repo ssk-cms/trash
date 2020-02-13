@@ -3,19 +3,14 @@ package com.trash.collection.trash.activity.controller;
 
 import com.trash.collection.trash.activity.domain.ActivityMsg;
 import com.trash.collection.trash.activity.service.ActivityMsgService;
-import com.trash.collection.trash.common.ResultWrapper;
+import com.trash.collection.trash.common.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.xml.transform.Result;
-import javax.xml.ws.Response;
 
 /**
- *  控制器
+ * 控制器
  *
  * @author seth
  * @since 2020-01-19
@@ -29,12 +24,22 @@ public class ActivityMsgController {
 
     /**
      * 新增活动
-     * */
+     */
     @PostMapping("/addActivity")
-    public ResultWrapper addActivity(@RequestBody ActivityMsg activityMsg){
-        ResultWrapper resultWrapper = new ResultWrapper();
+    public Response addActivity(@RequestBody @Validated ActivityMsg activityMsg) {
+        Response response = new Response();
+        activityMsgService.addActivity(activityMsg);
+        return response;
+    }
 
-        return resultWrapper;
+    /**
+     * 查看活动列表
+     */
+    @GetMapping("/list")
+    public Response list(String pagesize, String pageIndex,String param){
+        Response response = new Response();
+
+        return response;
     }
 
 }

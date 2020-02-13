@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+import java.util.HashMap;
+
 /**
  *  服务实现类
  *
@@ -17,12 +20,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ActivityMsgServiceImpl extends ServiceImpl<ActivityMsgMapper, ActivityMsg>implements ActivityMsgService {
 
+
     @Autowired
-    ActivityMsgService activityMsgService;
+    ActivityMsgMapper activityMsgMapper;
 
     @Override
     @Transactional
     public void addActivity(ActivityMsg activityMsg){
-        activityMsgService.insert(activityMsg);
+        Date date = new Date();
+        activityMsg.setCreateTime(date)
+                .setModifyTime(date)
+                .setState(ActivityMsg.NORMAL_STATE);
+        activityMsgMapper.insert(activityMsg);
     }
 }
