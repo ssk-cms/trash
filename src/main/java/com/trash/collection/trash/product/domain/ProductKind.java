@@ -3,11 +3,13 @@ package com.trash.collection.trash.product.domain;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
 
 
+import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -31,6 +33,7 @@ public class ProductKind implements Serializable {
     /**
      * 商品种类id
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     /**
      * 商品种类名称

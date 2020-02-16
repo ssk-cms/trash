@@ -37,7 +37,6 @@ public class ProductKindServiceImpl extends ServiceImpl<ProductKindMapper, Produ
         productKind.setCreateTime(date)
                 .setModifyTime(date)
                 .setState(ProductKind.NORMAL_STATE);
-        //todo 插入时间和id值有误，正在排查原因
         productKindMapper.insert(productKind);
     }
 
@@ -58,7 +57,6 @@ public class ProductKindServiceImpl extends ServiceImpl<ProductKindMapper, Produ
      */
     @Override
     public Page<ProductKind> list(Page<ProductKind> page, String param, Integer state) {
-        //todo 返回时间格式不正确，正在排查原因
         page.setRecords(this.productKindMapper.selectProductKind(page, param, state));
         return page;
     }
@@ -71,7 +69,6 @@ public class ProductKindServiceImpl extends ServiceImpl<ProductKindMapper, Produ
     public void updateMsg(ProductKind productKind){
         productKind.setModifyTime(new Date());
         System.err.println(new Date());
-        //todo 插入时间不对，正在排查原因
         productKindMapper.updateById(productKind);
     }
 
