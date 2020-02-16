@@ -56,4 +56,12 @@ public class ActivityMsgServiceImpl extends ServiceImpl<ActivityMsgMapper, Activ
                 .setModifyTime(new Date());
         activityMsgMapper.updateById(activityMsg);
     }
+
+    /**
+     * 编辑活动信息
+     * */
+    public void updateMsg(ActivityMsg activityMsg){
+        activityMsg.setModifyTime(new Date());
+        activityMsgMapper.updateById(activityMsg);
+    }
 }

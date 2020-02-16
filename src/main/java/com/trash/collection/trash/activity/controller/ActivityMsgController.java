@@ -2,24 +2,19 @@ package com.trash.collection.trash.activity.controller;
 
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.sun.istack.internal.NotNull;
 import com.trash.collection.trash.activity.domain.ActivityMsg;
 import com.trash.collection.trash.activity.service.ActivityMsgService;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.common.StatusCode;
 import com.trash.collection.trash.common.utils.uploadImgUtils.FileNameUtil;
 import com.trash.collection.trash.common.utils.uploadImgUtils.FileUploadUtil;
+import com.trash.collection.trash.product.service.ProductKindService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 
@@ -35,6 +30,9 @@ public class ActivityMsgController {
 
     @Autowired
     ActivityMsgService activityMsgService;
+
+    @Autowired
+    ProductKindService productKindService;
 
     /**
      * 新增活动
@@ -74,6 +72,32 @@ public class ActivityMsgController {
     }
 
     /**
+     * 编辑活动
+     * */
+    @PostMapping("/update")
+    public Response update(@RequestBody ActivityMsg activityMsg){
+        Response response = new Response();
+        if (Objects.isNull(activityMsg.getId())){
+            return productKindService.judgeParam();
+        }
+        activityMsgService.updateMsg(activityMsg);
+        return response;
+    }
+
+    /**
+     * 查看具体某一条活动信息内容
+     * */
+    @GetMapping("/selectOneMsg")
+    public Response selectOneMsg(Long activityMsgId){
+        Response response = new Response();
+        if (Objects.isNull(activityMsgId)){
+            return productKindService.judgeParam();
+        }
+        response.setData(activityMsgService.selectById(activityMsgId));
+        return response;
+    }
+
+    /**
      * 上传图片
      */
     @PostMapping("/uploadImg")
@@ -84,7 +108,7 @@ public class ActivityMsgController {
         //获得文件名字
         String fileName=multipartFile.getOriginalFilename();
         fileName= FileNameUtil.getFileName(fileName);
-        File dest = new File(localPath + fileName);
+//        File dest = new File(localPath + fileName);
         if(FileUploadUtil.upload(multipartFile, localPath, fileName)){
             // 将上传的文件写入到服务器端文件夹
             // 获取当前项目运气的完整url

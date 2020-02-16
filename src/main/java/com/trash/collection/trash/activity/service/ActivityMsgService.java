@@ -17,4 +17,9 @@ public interface ActivityMsgService extends IService<ActivityMsg> {
     Page<ActivityMsg> selectPage(Page<ActivityMsg> page, String param, Integer state);
 
     void deleteActivity(Long activityId);
+
+    /**
+     * 编辑活动信息
+     * */
+    void updateMsg(ActivityMsg activityMsg);
 }

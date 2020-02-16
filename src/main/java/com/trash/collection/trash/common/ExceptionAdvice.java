@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MultipartException;
 
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * 全局异常处理类
@@ -119,7 +120,12 @@ public class ExceptionAdvice {
         Response response = new Response();
         response.setCode(StatusCode.Data_Error)
                 .setStatusCode(StatusCode.Data_Error);
-        response.setMessage(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
+        if (Objects.isNull(e.getBindingResult().getAllErrors().get(0).getDefaultMessage())){
+            response.setMessage("请将相关内容填写完整");
+        }
+        else {
+            response.setMessage(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
+        }
         return response;
     }
 
