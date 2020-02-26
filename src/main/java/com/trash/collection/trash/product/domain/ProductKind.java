@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 
 import com.baomidou.mybatisplus.enums.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -55,11 +56,13 @@ public class ProductKind implements Serializable {
      * 创建时间
      */
     @TableField("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS")
     private Date createTime;
     /**
      * 修改时间
      */
     @TableField("modify_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS")
     private Date modifyTime;
 
 }

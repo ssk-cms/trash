@@ -35,6 +35,11 @@ private static final long serialVersionUID=1L;
     @TableField("order_number")
     private String orderNumber;
     /**
+     * 捐赠物品id
+     * */
+    @TableField("donation_goods_id")
+    private Long donationGoodsId;
+    /**
      * 商品id
      */
     @TableField("product_id")

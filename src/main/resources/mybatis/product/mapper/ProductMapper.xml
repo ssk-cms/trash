@@ -2,23 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.trash.collection.trash.product.dao.ProductMapper">
 
-        <!-- 通用查询映射结果 -->
-        <resultMap id="BaseResultMap" type="com.trash.collection.trash.product.domain.Product">
-            <id column="id" property="id"/>
-            <result column="product_kind_id" property="productKindId"/>
-            <result column="product_name" property="productName"/>
-            <result column="product_images" property="productImages"/>
-            <result column="commodity_price" property="commodityPrice"/>
-            <result column="product_price" property="productPrice"/>
-            <result column="need_points" property="needPoints"/>
-            <result column="total_number" property="totalNumber"/>
-            <result column="stock_number" property="stockNumber"/>
-            <result column="product_type" property="productType"/>
-            <result column="product_putaway_time" property="productPutawayTime"/>
-            <result column="product_sold_out_time" property="productSoldOutTime"/>
-            <result column="state" property="state"/>
-            <result column="create_time" property="createTime"/>
-            <result column="modify_time" property="modifyTime"/>
-        </resultMap>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trash.collection.trash.product.domain.Product">
+        <id column="id" property="id"/>
+        <result column="product_kind_id" property="productKindId"/>
+        <result column="product_name" property="productName"/>
+        <result column="product_images" property="productImages"/>
+        <result column="commodity_price" property="commodityPrice"/>
+        <result column="product_price" property="productPrice"/>
+        <result column="need_points" property="needPoints"/>
+        <result column="total_number" property="totalNumber"/>
+        <result column="stock_number" property="stockNumber"/>
+        <result column="product_putaway_time" property="productPutawayTime"/>
+        <result column="product_sold_out_time" property="productSoldOutTime"/>
+        <result column="state" property="state"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+    <select id="productList" resultType="com.trash.collection.trash.product.domain.Product">
+        SELECT
+        *
+        FROM
+        pr_product
+        <where>
+            <if test="param != null and param != ''">
+                product_name LIKE concat ( '%', #{param}, '%' )
+            </if>
+            <if test="state != null and state != ''">
+                AND state = #{state}
+            </if>
+            <if test="productKindId != null and productKindId != ''">
+                AND product_kind_id = #{state}
+            </if>
+        </where>
+        ORDER BY create_time desc
+    </select>
 
 </mapper>

@@ -6,6 +6,7 @@
         <resultMap id="BaseResultMap" type="com.trash.collection.trash.score.domain.Order">
             <id column="id" property="id"/>
             <result column="order_number" property="orderNumber"/>
+            <result column="donation_goods_id" property="donationGoodsId"/>
             <result column="product_id" property="productId"/>
             <result column="user_id" property="userId"/>
             <result column="product_count" property="productCount"/>

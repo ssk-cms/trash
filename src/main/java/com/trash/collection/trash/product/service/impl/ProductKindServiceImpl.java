@@ -1,10 +1,8 @@
 package com.trash.collection.trash.product.service.impl;
 
-import com.alipay.api.domain.DataEntry;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.common.StatusCode;
-import com.trash.collection.trash.product.domain.Product;
 import com.trash.collection.trash.product.domain.ProductKind;
 import com.trash.collection.trash.product.dao.ProductKindMapper;
 import com.trash.collection.trash.product.service.ProductKindService;

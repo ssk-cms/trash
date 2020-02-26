@@ -60,7 +60,7 @@ public class ActivityMsg implements Serializable{
      * 活动时间
      */
     @TableField("activity_time")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS",timezone = "Asia/Shanghai")
     private Date activityTime;
     /**
      * 友情链接

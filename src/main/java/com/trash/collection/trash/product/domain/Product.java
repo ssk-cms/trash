@@ -1,29 +1,38 @@
 package com.trash.collection.trash.product.domain;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
 import java.math.BigDecimal;
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotNull;
+
 /**
- * 
- *
  * @author seth
  * @since 2020-01-19
  */
 @Data
 @Accessors(chain = true)
 @TableName("pr_product")
-public class Product implements Serializable{
+public class Product implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
+
+    //    正常的商品状态
+    public static final Integer NORMAL_STATE = 1;
+    //    归档的商品状态
+    public static final Integer FORBIDEN_STATE = 0;
 
     /**
      * 商品id
@@ -34,11 +43,13 @@ public class Product implements Serializable{
      * 商品种类id
      */
     @TableField("product_kind_id")
+    @NotNull(message = "请选择商品类型")
     private Long productKindId;
     /**
      * 商品名称
      */
     @TableField("product_name")
+    @NotNull(message = "请填写商品名称")
     private String productName;
     /**
      * 商品图片地址
@@ -71,19 +82,16 @@ public class Product implements Serializable{
     @TableField("stock_number")
     private Integer stockNumber;
     /**
-     * 商品类型【1、积分兑换商品，2、捐赠物品商品】
-     */
-    @TableField("product_type")
-    private Integer productType;
-    /**
      * 商品上架时间
      */
     @TableField("product_putaway_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS", timezone = "Asia/Shanghai")
     private Date productPutawayTime;
     /**
      * 商品下架时间
      */
     @TableField("product_sold_out_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS", timezone = "Asia/Shanghai")
     private Date productSoldOutTime;
     /**
      * 商品状态【1、在用，0、归档】
