@@ -16,5 +16,20 @@
                     <result column="create_time" property="createTime"/>
                     <result column="modify_time" property="modifyTime"/>
         </resultMap>
+    <select id="getDonationGoodsList" resultType="com.trash.collection.trash.product.domain.DonationGoods">
+        SELECT
+        *
+        FROM
+        pr_donation_goods
+        <where>
+            <if test="goodsName != null and goodsName != ''">
+                product_name LIKE concat ( '%', #{goodsName}, '%' )
+            </if>
+            <if test="state != null and state != ''">
+                AND state = #{state}
+            </if>
+        </where>
+        ORDER BY create_time desc
+    </select>
 
 </mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trash.collection.trash.score.dao.DonationGoodsOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trash.collection.trash.score.domain.DonationGoodsOrder">
+        <id column="id" property="id"/>
+        <result column="donation_goods_id" property="donationGoodsId"/>
+        <result column="user_id" property="userId"/>
+        <result column="donation_logistics_id" property="donationLogisticsId"/>
+        <result column="goods_order_number" property="goodsOrderNumber"/>
+        <result column="goods_count" property="goodsCount"/>
+        <result column="gain_score" property="gainScore"/>
+        <result column="gain_score_time" property="gainScoreTime"/>
+        <result column="state" property="state"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+
+</mapper>

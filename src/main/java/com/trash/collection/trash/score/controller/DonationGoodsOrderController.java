@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *  控制器
+ * 控制器
  *
  * @author seth
- * @since 2020-01-19
+ * @since 2020-03-07
  */
 @RestController
-@RequestMapping("/score/order")
-public class OrderController {
+@RequestMapping("/score/donationGoodsOrder")
+public class DonationGoodsOrderController {
 
 }
 

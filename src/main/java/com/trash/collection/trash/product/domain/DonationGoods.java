@@ -66,7 +66,7 @@ public class DonationGoods implements Serializable{
     @TableField("goods_images")
     private String goodsImages;
     /**
-     * 捐赠物品状态【1、正常，0、禁用】
+     * 捐赠物品状态【1、积分审核中，0、禁用；2、积分已发放给用户】
      * */
     private Integer state;
     /**

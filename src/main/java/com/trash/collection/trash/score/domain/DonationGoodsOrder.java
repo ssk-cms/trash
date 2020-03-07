@@ -1,10 +1,14 @@
 package com.trash.collection.trash.score.domain;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
+import java.math.BigDecimal;
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 
@@ -12,75 +16,58 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * 
- *
  * @author seth
- * @since 2020-01-19
+ * @since 2020-03-07
  */
 @Data
 @Accessors(chain = true)
-@TableName("sc_order")
-public class Order implements Serializable{
+@TableName("sc_donation_goods_order")
+public class DonationGoodsOrder implements Serializable {
 
-private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * 订单主键id
+     * 捐赠物品订单id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     /**
-     * 订单号
-     */
-    @TableField("order_number")
-    private String orderNumber;
-    /**
      * 捐赠物品id
-     * */
+     */
     @TableField("donation_goods_id")
     private Long donationGoodsId;
-    /**
-     * 商品id
-     */
-    @TableField("product_id")
-    private Long productId;
     /**
      * 用户id
      */
     @TableField("user_id")
     private Long userId;
     /**
-     * 商品数量
+     * 捐赠物品物流信息id
      */
-    @TableField("product_count")
-    private Integer productCount;
+    @TableField("donation_logistics_id")
+    private Long donationLogisticsId;
     /**
-     * 发货时间
+     * 捐赠物品订单号
      */
-    @TableField("delivery_time")
-    private Date deliveryTime;
+    @TableField("goods_order_number")
+    private byte[] goodsOrderNumber;
     /**
-     * 收获时间
+     * 捐赠商品数量
      */
-    @TableField("recving_time")
-    private Date recvingTime;
+    @TableField("goods_count")
+    private Integer goodsCount;
     /**
-     * 下单时间
+     * 捐赠商品后获得的积分
      */
-    @TableField("create_order_time")
-    private Date createOrderTime;
+    @TableField("gain_score")
+    private BigDecimal gainScore;
     /**
-     * 快递单号
+     * 获得积分的时间
      */
-    @TableField("tracking_number")
-    private String trackingNumber;
+    @TableField("gain_score_time")
+    private Date gainScoreTime;
     /**
-     * 下单类型【1、积分兑换订单，2、捐赠物品订单】
-     */
-    @TableField("order_type")
-    private Integer orderType;
-    /**
-     * 订单状态【1、在用，2、无效，3、已完成】
+     * 订单状态【0、失效；1、正常；2、已完成】
      */
     private Integer state;
     /**
@@ -93,5 +80,6 @@ private static final long serialVersionUID=1L;
      */
     @TableField("modify_time")
     private Date modifyTime;
+
 
 }

@@ -2,11 +2,12 @@ package com.trash.collection.trash.score.domain;
 
 import com.baomidou.mybatisplus.enums.IdType;
 
-import java.math.BigDecimal;
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 
@@ -14,20 +15,18 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * 
- *
  * @author seth
- * @since 2020-01-19
+ * @since 2020-03-07
  */
 @Data
 @Accessors(chain = true)
-@TableName("sc_score_user")
-public class ScoreUser implements Serializable{
+@TableName("sc_score_detail")
+public class ScoreDetail implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * 用户积分表
+     * 积分明细id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
@@ -37,15 +36,15 @@ public class ScoreUser implements Serializable{
     @TableField("user_id")
     private Long userId;
     /**
-     * 总积分
+     * 捐赠物品订单id
      */
-    @TableField("total_score")
-    private BigDecimal totalScore;
+    @TableField("donation_goods_order_id")
+    private Long donationGoodsOrderId;
     /**
-     * 剩余积分
+     * 商品兑换订单id
      */
-    @TableField("residuce_score")
-    private BigDecimal residuceScore;
+    @TableField("product_order_id")
+    private Long productOrderId;
     /**
      * 创建时间
      */
@@ -56,5 +55,6 @@ public class ScoreUser implements Serializable{
      */
     @TableField("modify_time")
     private Date modifyTime;
+
 
 }

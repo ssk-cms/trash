@@ -1,8 +1,12 @@
 package com.trash.collection.trash.product.dao;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.trash.collection.trash.product.domain.DonationGoods;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  *  Mapper 接口
@@ -13,4 +17,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DonationGoodsMapper extends BaseMapper<DonationGoods> {
 
+    /**
+     * 获取捐赠物品列表
+     * */
+    List<DonationGoods> getDonationGoodsList(Page<DonationGoods> page, @Param("state") Integer state,@Param("goodsName") String goodsName);
 }
