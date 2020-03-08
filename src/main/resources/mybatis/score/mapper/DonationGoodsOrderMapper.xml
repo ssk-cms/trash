@@ -8,6 +8,7 @@
         <result column="donation_goods_id" property="donationGoodsId"/>
         <result column="user_id" property="userId"/>
         <result column="donation_logistics_id" property="donationLogisticsId"/>
+        <result column="worker_message_id" property="workerMessageId"/>
         <result column="goods_order_number" property="goodsOrderNumber"/>
         <result column="goods_count" property="goodsCount"/>
         <result column="gain_score" property="gainScore"/>

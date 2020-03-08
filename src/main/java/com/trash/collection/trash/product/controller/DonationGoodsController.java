@@ -1,7 +1,6 @@
 package com.trash.collection.trash.product.controller;
 
 
-import com.baomidou.mybatisplus.plugins.Page;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.VO.DonationGoodsVO;
 import com.trash.collection.trash.product.domain.DonationGoods;
@@ -51,5 +50,6 @@ public class DonationGoodsController {
         goodsService.setGoodsScore(donationGoods);
         return response;
     }
+
 }
 

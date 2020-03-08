@@ -47,6 +47,11 @@ public class DonationGoodsOrder implements Serializable {
     @TableField("donation_logistics_id")
     private Long donationLogisticsId;
     /**
+     * 上门工作人员id
+     * */
+    @TableField("worker_message_id")
+    private Long workerMessageId;
+    /**
      * 捐赠物品订单号
      */
     @TableField("goods_order_number")

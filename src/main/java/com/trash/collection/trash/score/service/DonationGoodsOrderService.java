@@ -11,4 +11,8 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface DonationGoodsOrderService extends IService<DonationGoodsOrder> {
 
+    /**
+     * 设置上门回收工作人员信息
+     * */
+    void setterWorker(DonationGoodsOrder goodsOrder);
 }

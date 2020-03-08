@@ -2,15 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.trash.collection.trash.product.dao.DonationLogisticsMsgMapper">
 
-        <!-- 通用查询映射结果 -->
-        <resultMap id="BaseResultMap" type="com.trash.collection.trash.product.domain.DonationLogisticsMsg">
-                    <id column="id" property="id"/>
-                    <result column="order_id" property="orderId"/>
-                    <result column="donate_goods_id" property="donateGoodsId"/>
-                    <result column="logistics_msg_title" property="logisticsMsgTitle"/>
-                    <result column="logistics_msg_content" property="logisticsMsgContent"/>
-                    <result column="create_time" property="createTime"/>
-                    <result column="modify_time" property="modifyTime"/>
-        </resultMap>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trash.collection.trash.product.domain.DonationLogisticsMsg">
+        <id column="id" property="id"/>
+        <result column="donation_goods_order_id" property="donationGoodsOrderId"/>
+        <result column="donate_goods_id" property="donateGoodsId"/>
+        <result column="worker_message_id" property="workerMessageId"/>
+        <result column="logistics_msg_title" property="logisticsMsgTitle"/>
+        <result column="logistics_msg_content" property="logisticsMsgContent"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
 
 </mapper>

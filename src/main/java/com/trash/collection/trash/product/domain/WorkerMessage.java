@@ -16,45 +16,38 @@ import lombok.experimental.Accessors;
 
 /**
  * @author seth
- * @since 2020-02-26
+ * @since 2020-03-08
  */
 @Data
 @Accessors(chain = true)
-@TableName("pr_donation_logistics_msg")
-public class DonationLogisticsMsg implements Serializable {
+@TableName("pr_worker_message")
+public class WorkerMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 捐赠物品物流信息id
+     * 上门回收物品工作人员信息id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     /**
-     * 订单id
+     * 工作人员姓名
      */
-    @TableField("donation_goods_order_id")
-    private Long donationGoodsOrderId;
+    private String name;
     /**
-     * 捐赠物品id
+     * 工作人员电话
      */
-    @TableField("donate_goods_id")
-    private Long donateGoodsId;
+    @TableField("phone_number")
+    private String phoneNumber;
     /**
-     * 上门回收工作人员id
-     * */
-    @TableField("worker_message_id")
-    private Long workerMessageId;
-    /**
-     * 物流信息标题
+     * 工作人员身份证号
      */
-    @TableField("logistics_msg_title")
-    private String logisticsMsgTitle;
+    @TableField("id_card")
+    private String idCard;
     /**
-     * 物流信息内容
+     * 工作人员照片
      */
-    @TableField("logistics_msg_content")
-    private String logisticsMsgContent;
+    private String images;
     /**
      * 创建时间
      */
