@@ -20,5 +20,6 @@ public interface DonationGoodsMapper extends BaseMapper<DonationGoods> {
     /**
      * 获取捐赠物品列表
      * */
-    List<DonationGoods> getDonationGoodsList(Page<DonationGoods> page, @Param("state") Integer state,@Param("goodsName") String goodsName);
+    List<DonationGoods> getDonationGoodsList(Page<DonationGoods> page, @Param("state") Integer state,
+                                             @Param("goodsName") String goodsName,@Param("productKindId") Long productKindId);
 }

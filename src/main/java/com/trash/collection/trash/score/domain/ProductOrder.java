@@ -47,6 +47,11 @@ public class ProductOrder implements Serializable {
     @TableField("user_id")
     private Long userId;
     /**
+     * 用户地址id
+     * */
+    @TableField("user_address_id")
+    private Long userAddressId;
+    /**
      * 商品数量
      */
     @TableField("product_count")

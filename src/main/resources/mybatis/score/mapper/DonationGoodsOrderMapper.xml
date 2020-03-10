@@ -9,6 +9,7 @@
         <result column="user_id" property="userId"/>
         <result column="donation_logistics_id" property="donationLogisticsId"/>
         <result column="worker_message_id" property="workerMessageId"/>
+        <result column="user_address_id" property="userAddressId"/>
         <result column="goods_order_number" property="goodsOrderNumber"/>
         <result column="goods_count" property="goodsCount"/>
         <result column="gain_score" property="gainScore"/>
@@ -17,5 +18,34 @@
         <result column="create_time" property="createTime"/>
         <result column="modify_time" property="modifyTime"/>
     </resultMap>
+    <select id="getGoodsOrderList" resultType="com.trash.collection.trash.score.VO.DonationGoodsOrderVO"
+            parameterType="com.trash.collection.trash.score.VO.DonationGoodsOrderVO">
+        SELECT
+        dg.goods_name goodsName,
+        dg.id donationGoodsId,
+        dgo.state state,
+        dgo.goods_order_number orderNumber,
+        su.username userName,
+        dgo.goods_count goodsCount,
+        dgo.gain_score gainScore,
+        dgo.gain_score_time gainScoreTime
+        FROM
+        sc_donation_goods_order dgo
+        LEFT JOIN pr_donation_goods dg ON dg.id = dgo.donation_goods_id
+        LEFT JOIN sys_user su ON su.user_id = dgo.user_id
+        <where>
+            <if test="orderNumber != null and orderNumber != ''">
+                dgo.goods_order_number LIKE concat ( '%', #{orderNumber}, '%' )
+            </if>
+            <if test="state != null and state != ''">
+                AND state = #{state}
+            </if>
+            <if test="param != null and param != ''">
+                AND (dg.goods_name LIKE concat ( '%', #{param}, '%' )
+                or su.userName LIKE concat('%',#{param},'%'))
+            </if>
+        </where>
+        ORDER BY dgo.create_time
+    </select>
 
 </mapper>

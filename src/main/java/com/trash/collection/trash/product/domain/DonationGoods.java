@@ -41,6 +41,11 @@ public class DonationGoods implements Serializable{
     @TableField("product_kind_id")
     private Long productKindId;
     /**
+     * 捐赠物品物流信息id
+     * */
+    @TableField("donation_logistics_id")
+    private Long donationLogisticsId;
+    /**
      * 商品名称
      */
     @TableField("goods_name")
@@ -65,6 +70,17 @@ public class DonationGoods implements Serializable{
      */
     @TableField("goods_images")
     private String goodsImages;
+    /**
+     * 捐赠物品物流状态【
+     * 10、等待工作人员上门回收；
+     * 20、工作人员已上门；
+     * 21、已派送工作人员按照约定时间上门；
+     * 30、捐赠物品已入库；
+     * 40、捐赠物品已出库；
+     * 50、捐赠物品已送至需要的人群】
+     * */
+    @TableField("logistics_status")
+    private Integer logisticsStatus;
     /**
      * 捐赠物品状态【1、积分审核中，0、禁用；2、积分已发放给用户】
      * */

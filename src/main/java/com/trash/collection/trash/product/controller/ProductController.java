@@ -59,7 +59,7 @@ public class ProductController {
     }
 
     /**
-     * g归档商品
+     * 归档商品
      * */
     @GetMapping("/deleteProduct")
     public Response deleteProduct(Long productId){

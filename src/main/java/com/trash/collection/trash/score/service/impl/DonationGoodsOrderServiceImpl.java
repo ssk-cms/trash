@@ -1,7 +1,11 @@
 package com.trash.collection.trash.score.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.product.domain.DonationGoods;
 import com.trash.collection.trash.product.domain.DonationLogisticsMsg;
+import com.trash.collection.trash.product.service.DonationGoodsService;
 import com.trash.collection.trash.product.service.DonationLogisticsMsgService;
+import com.trash.collection.trash.score.VO.DonationGoodsOrderVO;
 import com.trash.collection.trash.score.domain.DonationGoodsOrder;
 import com.trash.collection.trash.score.dao.DonationGoodsOrderMapper;
 import com.trash.collection.trash.score.service.DonationGoodsOrderService;
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 服务实现类
@@ -27,6 +32,23 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
     @Autowired
     private DonationLogisticsMsgService logisticsMsgService;
 
+    @Autowired
+    private DonationGoodsService goodsService;
+
+    @Autowired
+    private DonationGoodsOrderMapper orderMapper;
+
+    /**
+     * 获取捐赠物品订单列表
+     * */
+    @Override
+    public Page<DonationGoodsOrderVO> getGoodsOrderList(DonationGoodsOrderVO orderVO){
+        Page<DonationGoodsOrderVO> page = new Page<>(orderVO.getPageIndex(),orderVO.getPageSize());
+        List<DonationGoodsOrderVO> orderVOList = orderMapper.getGoodsOrderList(page,orderVO);
+        page.setRecords(orderVOList);
+        return page;
+    }
+
     /**
      * 设置上门回收工作人员信息
      * */
@@ -37,8 +59,9 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
         this.setWorkerMessage(goodsOrder);
         //设置捐赠商品的物流信息
         this.setlogisticsMsg(goodsOrder);
+        //修改捐赠商品中的捐赠物品状态
+        this.setGoodsLogisticsStatus(goodsOrder);
     }
-
 
     /**
      * 設置工作人員信息
@@ -65,5 +88,15 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
                 .setCreateTime(date)
                 .setModifyTime(date);
         logisticsMsgService.insert(logisticsMsg);
+    }
+
+    /**
+     * 更新捐赠物品物流状态
+     * */
+    private void setGoodsLogisticsStatus(DonationGoodsOrder goodsOrder) {
+        DonationGoods goods = new DonationGoods().setId(goodsOrder.getDonationGoodsId())
+                .setLogisticsStatus(21)
+                .setModifyTime(new Date());
+        goodsService.updateById(goods);
     }
 }

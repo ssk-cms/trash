@@ -28,6 +28,9 @@
             <if test="state != null and state != ''">
                 AND state = #{state}
             </if>
+            <if test="productKindId != null and productKindId != ''">
+                AND product_kind_id = #{productKindId}
+            </if>
         </where>
         ORDER BY create_time desc
     </select>

@@ -51,7 +51,7 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
     @Override
     public Page<DonationGoods> getDonationGoodsList(DonationGoodsVO goodsVO) {
         Page<DonationGoods> page = new Page<>(goodsVO.getPageIndex(), goodsVO.getPageSize());
-        page.setRecords(goodsMapper.getDonationGoodsList(page,goodsVO.getState(),goodsVO.getGoodsName()));
+        page.setRecords(goodsMapper.getDonationGoodsList(page,goodsVO.getState(),goodsVO.getGoodsName(),goodsVO.getProductKindId()));
         return page;
     }
 
@@ -65,7 +65,8 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
         DonationGoods goods = new DonationGoods();
         goods.setId(donationGoods.getId())
                 .setAcquireScore(donationGoods.getAcquireScore())
-                .setModifyTime(date);
+                .setModifyTime(date)
+                .setState(2);
         goodsService.updateById(goods);
         //更新用户个人总积分
         this.updateUserScore(donationGoods);

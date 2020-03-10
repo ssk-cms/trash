@@ -85,13 +85,13 @@ public class Product implements Serializable {
      * 商品上架时间
      */
     @TableField("product_putaway_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS", timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date productPutawayTime;
     /**
      * 商品下架时间
      */
     @TableField("product_sold_out_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS", timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date productSoldOutTime;
     /**
      * 商品状态【1、在用，0、归档】

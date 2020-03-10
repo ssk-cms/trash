@@ -56,13 +56,13 @@ public class ProductKind implements Serializable {
      * 创建时间
      */
     @TableField("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     /**
      * 修改时间
      */
     @TableField("modify_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifyTime;
 
 }

@@ -2,16 +2,12 @@ package com.trash.collection.trash.score.controller;
 
 
 import com.trash.collection.trash.common.Response;
-import com.trash.collection.trash.product.domain.DonationLogisticsMsg;
 import com.trash.collection.trash.product.service.ProductKindService;
+import com.trash.collection.trash.score.VO.DonationGoodsOrderVO;
 import com.trash.collection.trash.score.domain.DonationGoodsOrder;
 import com.trash.collection.trash.score.service.DonationGoodsOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -32,6 +28,16 @@ public class DonationGoodsOrderController {
     ProductKindService productKindService;
 
     /**
+     *获取捐赠物品订单列表
+     * */
+    @GetMapping("/list")
+    public Response list(DonationGoodsOrderVO orderVo){
+        Response response = new Response();
+        goodsOrderService.getGoodsOrderList(orderVo);
+        return response;
+    }
+
+    /**
      * 设置上门回收工作人员信息
      * */
     @PostMapping("/settleWorker")
@@ -43,5 +49,7 @@ public class DonationGoodsOrderController {
         goodsOrderService.setterWorker(goodsOrder);
         return response;
     }
+
+
 }
 

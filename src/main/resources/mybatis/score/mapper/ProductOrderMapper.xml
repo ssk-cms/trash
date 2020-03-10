@@ -8,6 +8,7 @@
         <result column="order_number" property="orderNumber"/>
         <result column="product_id" property="productId"/>
         <result column="user_id" property="userId"/>
+        <result column="user_address_id" property="userAddressId"/>
         <result column="product_count" property="productCount"/>
         <result column="delivery_time" property="deliveryTime"/>
         <result column="recving_time" property="recvingTime"/>
