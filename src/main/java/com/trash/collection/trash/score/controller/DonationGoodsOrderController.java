@@ -31,9 +31,9 @@ public class DonationGoodsOrderController {
      *获取捐赠物品订单列表
      * */
     @GetMapping("/list")
-    public Response list(DonationGoodsOrderVO orderVo){
+      public Response list(DonationGoodsOrderVO orderVo){
         Response response = new Response();
-        goodsOrderService.getGoodsOrderList(orderVo);
+        response.setData(goodsOrderService.getGoodsOrderList(orderVo));
         return response;
     }
 
@@ -49,7 +49,5 @@ public class DonationGoodsOrderController {
         goodsOrderService.setterWorker(goodsOrder);
         return response;
     }
-
-
 }
 

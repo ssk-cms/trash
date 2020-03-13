@@ -18,8 +18,7 @@
         <result column="create_time" property="createTime"/>
         <result column="modify_time" property="modifyTime"/>
     </resultMap>
-    <select id="getGoodsOrderList" resultType="com.trash.collection.trash.score.VO.DonationGoodsOrderVO"
-            parameterType="com.trash.collection.trash.score.VO.DonationGoodsOrderVO">
+    <select id="getGoodsOrderList" resultType="com.trash.collection.trash.score.VO.DonationGoodsOrderVO">
         SELECT
         dg.goods_name goodsName,
         dg.id donationGoodsId,
@@ -28,7 +27,8 @@
         su.username userName,
         dgo.goods_count goodsCount,
         dgo.gain_score gainScore,
-        dgo.gain_score_time gainScoreTime
+        dgo.gain_score_time gainScoreTime,
+        dgo.id id
         FROM
         sc_donation_goods_order dgo
         LEFT JOIN pr_donation_goods dg ON dg.id = dgo.donation_goods_id
@@ -42,7 +42,7 @@
             </if>
             <if test="param != null and param != ''">
                 AND (dg.goods_name LIKE concat ( '%', #{param}, '%' )
-                or su.userName LIKE concat('%',#{param},'%'))
+                or su.username LIKE concat('%',#{param},'%'))
             </if>
         </where>
         ORDER BY dgo.create_time

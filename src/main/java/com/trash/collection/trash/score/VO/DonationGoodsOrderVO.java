@@ -66,4 +66,9 @@ public class DonationGoodsOrderVO extends PageVO implements Serializable {
      * 获得积分的时间
      * */
     private Date gainScoreTime;
+
+    /**
+     * 捐赠物品订单id
+     * */
+    private Long id;
 }

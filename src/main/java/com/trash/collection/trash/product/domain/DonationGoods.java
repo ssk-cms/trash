@@ -71,6 +71,10 @@ public class DonationGoods implements Serializable{
     @TableField("goods_images")
     private String goodsImages;
     /**
+     * 备注
+     * */
+    private String remark;
+    /**
      * 捐赠物品物流状态【
      * 10、等待工作人员上门回收；
      * 20、工作人员已上门；

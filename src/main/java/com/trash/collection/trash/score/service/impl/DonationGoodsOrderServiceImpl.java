@@ -44,7 +44,7 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
     @Override
     public Page<DonationGoodsOrderVO> getGoodsOrderList(DonationGoodsOrderVO orderVO){
         Page<DonationGoodsOrderVO> page = new Page<>(orderVO.getPageIndex(),orderVO.getPageSize());
-        List<DonationGoodsOrderVO> orderVOList = orderMapper.getGoodsOrderList(page,orderVO);
+        List<DonationGoodsOrderVO> orderVOList = orderMapper.getGoodsOrderList(page,orderVO.getOrderNumber(),orderVO.getParam(),orderVO.getState());
         page.setRecords(orderVOList);
         return page;
     }

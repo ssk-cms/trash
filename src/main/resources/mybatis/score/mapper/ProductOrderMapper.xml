@@ -18,5 +18,43 @@
         <result column="create_time" property="createTime"/>
         <result column="modify_time" property="modifyTime"/>
     </resultMap>
+    <select id="getOrderList" resultType="com.trash.collection.trash.score.VO.ProductOrderVO">
+      SELECT
+        spo.id id,
+        spo.user_id userId,
+        spo.order_number orderNumber,
+        spo.product_id productId,
+        spo.user_address_id userAddressId,
+        spo.product_count productCount,
+        spo.delivery_time deliveryTime,
+        spo.recving_time recvingTime,
+        spo.expend_score expendScore,
+        spo.tracking_number trackingNumber,
+        spo.state state,
+        spo.create_time createTime,
+        spo.modify_time modifyTime,
+        pro.product_name productName,
+        su.username userName,
+        pk.product_name
+    FROM
+        sc_product_order spo
+        LEFT JOIN pr_product pro ON pro.id = spo.product_id
+        LEFT JOIN sys_user su ON su.user_id = spo.user_id
+        LEFT JOIN pr_product_kind pk ON pk.id = pro.product_kind_id
+        <where>
+            <if test="orderNumber != null and orderNumber != ''">
+                spo.order_number LIKE concat ( '%', #{orderNumber}, '%' )
+            </if>
+            <if test="state != null and state != ''">
+                AND spo.state = #{state}
+            </if>
+            <if test="param != null and param != ''">
+                AND (pro.product_name LIKE concat ( '%', #{param}, '%' )
+                or su.username LIKE concat('%',#{param},'%'))
+            </if>
+        </where>
+    ORDER BY
+        spo.create_time
+    </select>
 
 </mapper>

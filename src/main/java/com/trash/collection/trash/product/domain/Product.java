@@ -94,7 +94,7 @@ public class Product implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date productSoldOutTime;
     /**
-     * 商品状态【1、在用，0、归档】
+     * 商品状态【1、在用，0、下架】
      */
     private Integer state;
     /**

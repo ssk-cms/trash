@@ -49,6 +49,10 @@ public class WorkerMessage implements Serializable {
      */
     private String images;
     /**
+     * 工作人员状态【0、离职；1、空闲；2、接单中】
+     * */
+    private Integer state;
+    /**
      * 创建时间
      */
     @TableField("create_time")
