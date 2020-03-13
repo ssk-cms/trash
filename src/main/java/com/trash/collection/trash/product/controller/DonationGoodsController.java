@@ -90,7 +90,7 @@ public class DonationGoodsController {
             return productKindService.judgeParam();
         }
         Response response = new Response();
-        this.goodsService.stockRemove();
+        this.goodsService.stockRemove(donationGoods);
         return response;
     }
 
