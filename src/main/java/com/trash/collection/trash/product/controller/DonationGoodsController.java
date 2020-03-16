@@ -57,10 +57,10 @@ public class DonationGoodsController {
 
     /**
      * 更新捐赠物品状态-已派送工作人员上门
-     * */
+     */
     @PostMapping("/arrangeWorrker")
-    public Response arrangeWorrker(@RequestBody DonationGoods donationGoods){
-        if (Objects.isNull(donationGoods.getId())){
+    public Response arrangeWorrker(@RequestBody DonationGoods donationGoods) {
+        if (Objects.isNull(donationGoods.getId())) {
             return productKindService.judgeParam();
         }
         Response response = new Response();
@@ -70,10 +70,10 @@ public class DonationGoodsController {
 
     /**
      * 更新捐赠物品状态--捐赠物品已入库
-     * */
+     */
     @PostMapping("/putInStorage")
-    public Response putInStorage(@RequestBody DonationGoods donationGoods){
-        if (Objects.isNull(donationGoods.getId())){
+    public Response putInStorage(@RequestBody DonationGoods donationGoods) {
+        if (Objects.isNull(donationGoods.getId())) {
             return productKindService.judgeParam();
         }
         Response response = new Response();
@@ -83,17 +83,20 @@ public class DonationGoodsController {
 
     /**
      * 更新捐赠物品状态--商品已出库
-     * */
+     * 更新捐赠物品状态--商品已送至目的地
+     */
     @PostMapping("/stockRemove")
-    public Response stockRemove(@RequestBody DonationGoods donationGoods){
-        if (Objects.isNull(donationGoods.getId())){
+    public Response stockRemove(@RequestBody DonationGoods donationGoods) {
+        if (Objects.isNull(donationGoods)) {
+            return productKindService.judgeParam();
+        }
+        if (Objects.isNull(donationGoods.getId()) || Objects.isNull(donationGoods.getLogisticsStatus())) {
             return productKindService.judgeParam();
         }
         Response response = new Response();
         this.goodsService.stockRemove(donationGoods);
         return response;
     }
-
 
 }
 

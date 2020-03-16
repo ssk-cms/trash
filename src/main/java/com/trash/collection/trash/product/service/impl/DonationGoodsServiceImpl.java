@@ -193,13 +193,19 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
     public void stockRemove(DonationGoods donationGoods){
         //更新物流状态
         DonationGoods goods = new DonationGoods().setId(donationGoods.getId())
-                .setLogisticsStatus(40)
+                .setLogisticsStatus(donationGoods.getLogisticsStatus())
                 .setModifyTime(new Date());
         this.goodsService.updateById(goods);
         //更新物流信息
         Map<String, String> map = new HashMap<>();
-        map.put("title", "商品已出库");
-        map.put("content", donationGoods.getRemark());
+        if (Objects.equals(donationGoods.getLogisticsStatus(),40)){
+            map.put("title", "商品已出库");
+        }else if (Objects.equals(donationGoods.getLogisticsStatus(),50)){
+            map.put("title", "商品已送至目的地");
+        }
+        if (Objects.nonNull(donationGoods.getRemark())){
+            map.put("content", donationGoods.getRemark());
+        }
         this.setlogisticsMsg(donationGoods, map);
     }
 }
