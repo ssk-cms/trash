@@ -1,9 +1,16 @@
 package com.trash.collection.trash.product.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.trash.collection.trash.common.Response;
+import com.trash.collection.trash.product.VO.WorkerMessageVO;
+import com.trash.collection.trash.product.domain.WorkerMessage;
+import com.trash.collection.trash.product.service.ProductKindService;
+import com.trash.collection.trash.product.service.WorkerMessageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.Objects;
 
 /**
  * 控制器
@@ -14,6 +21,66 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/product/workerMessage")
 public class WorkerMessageController {
+
+    @Autowired
+    ProductKindService productKindService;
+
+    @Autowired
+    WorkerMessageService messageService;
+
+    /**
+     * 新增上门取件工作人员信息
+     */
+    @PostMapping("/add")
+    public Response add(@RequestBody WorkerMessage workerMessage){
+        Response response = new Response();
+        if (Objects.isNull(workerMessage)){
+            return productKindService.judgeParam();
+        }
+        messageService.add(workerMessage);
+        return response;
+    }
+
+    /**
+     * 获取工作人员信息列表
+     * */
+    @GetMapping("/list")
+    public Response list(WorkerMessageVO workerMessageVO){
+        Response response = new Response();
+        if (Objects.isNull(workerMessageVO)){
+            return productKindService.judgeParam();
+        }
+        response.setData(messageService.getList(workerMessageVO));
+        return response;
+    }
+
+    /**
+     * 根据id查询某一个工作人员的信息
+     * */
+    @GetMapping("/getOne")
+    public Response getOne(Integer workerMessageId){
+        Response response = new Response();
+        if (Objects.isNull(workerMessageId)){
+            return productKindService.judgeParam();
+        }
+        response.setData(messageService.selectById(workerMessageId));
+        return response;
+    }
+    /**
+     * 编辑
+     * */
+    @PostMapping("/edit")
+    public Response edit(@RequestBody WorkerMessage workerMessage){
+        Response response = new Response();
+        if (Objects.isNull(workerMessage)){
+            return productKindService.judgeParam();
+        }
+        if (Objects.isNull(workerMessage.getId())){
+            return productKindService.judgeParam();
+        }
+        messageService.edit(workerMessage);
+        return response;
+    }
 
 }
 

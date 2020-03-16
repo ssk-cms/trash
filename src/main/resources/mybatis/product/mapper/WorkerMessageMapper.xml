@@ -13,5 +13,17 @@
         <result column="create_time" property="createTime"/>
         <result column="modify_time" property="modifyTime"/>
     </resultMap>
+    <select id="getList" resultType="com.trash.collection.trash.product.domain.WorkerMessage">
+        select
+        *
+        from pr_worker_message
+        <where>
+            <if test="param != null and param != ''">
+                product_name LIKE concat ( '%', #{param}, '%' )
+            </if>
+            AND state = #{state}
+        </where>
+        ORDER BY create_time desc
+    </select>
 
 </mapper>
