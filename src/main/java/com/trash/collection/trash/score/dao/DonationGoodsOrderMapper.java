@@ -21,4 +21,9 @@ public interface DonationGoodsOrderMapper extends BaseMapper<DonationGoodsOrder>
     List<DonationGoodsOrderVO> getGoodsOrderList(Page<DonationGoodsOrderVO> page, @Param("param") String param,
                                                  @Param("orderNumber") String orderNumber,
                                                  @Param("state") Integer state);
+
+    /**
+     * 获取用户捐赠订单列表
+     * */
+    List<DonationGoodsOrder> getListByUser(Page<DonationGoodsOrder> page, Long userId, Integer state);
 }

@@ -47,5 +47,15 @@
         </where>
         ORDER BY dgo.create_time
     </select>
+    <select id="getListByUser" resultType="com.trash.collection.trash.score.domain.DonationGoodsOrder">
+        select
+        *
+        from
+        sc_donation_goods_order
+        where
+        state = #{state}
+        and user_id = #{userId}
+        order by create_time DESC
+    </select>
 
 </mapper>

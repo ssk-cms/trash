@@ -1,11 +1,13 @@
 package com.trash.collection.trash.score.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.trash.collection.trash.product.domain.DonationGoods;
 import com.trash.collection.trash.product.domain.DonationLogisticsMsg;
 import com.trash.collection.trash.product.service.DonationGoodsService;
 import com.trash.collection.trash.product.service.DonationLogisticsMsgService;
 import com.trash.collection.trash.score.VO.DonationGoodsOrderVO;
+import com.trash.collection.trash.score.VO.UserGoodsOrderVO;
 import com.trash.collection.trash.score.domain.DonationGoodsOrder;
 import com.trash.collection.trash.score.dao.DonationGoodsOrderMapper;
 import com.trash.collection.trash.score.service.DonationGoodsOrderService;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,6 +64,16 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
         this.setlogisticsMsg(goodsOrder);
         //修改捐赠商品中的捐赠物品状态
         this.setGoodsLogisticsStatus(goodsOrder);
+    }
+
+    /**
+     * 用户捐赠订单列表
+     * */
+    @Override
+    public Page<DonationGoodsOrder> getListByUser(UserGoodsOrderVO userGoodsOrderVO){
+        Page<DonationGoodsOrder> page = new Page<>(userGoodsOrderVO.getPageIndex(),userGoodsOrderVO.getPageSize());
+        page.setRecords(this.orderMapper.getListByUser(page,userGoodsOrderVO.getUserId(),userGoodsOrderVO.getState()));
+        return page;
     }
 
     /**
