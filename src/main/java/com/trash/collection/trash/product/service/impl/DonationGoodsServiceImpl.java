@@ -208,4 +208,16 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
         }
         this.setlogisticsMsg(donationGoods, map);
     }
+
+    /**
+     * 用户查看捐赠物品列表
+     * */
+    @Override
+    public Page<DonationGoods> getListByUser(DonationGoodsVO donationGoodsVO){
+        Page<DonationGoods> page = new Page<>(donationGoodsVO.getPageIndex(),donationGoodsVO.getPageSize());
+        page.setRecords(goodsMapper.getListByUser(page,donationGoodsVO.getUserId(),
+                donationGoodsVO.getState(),
+                donationGoodsVO.getGoodsName()));
+        return page;
+    }
 }

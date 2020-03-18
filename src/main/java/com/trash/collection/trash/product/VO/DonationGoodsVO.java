@@ -20,4 +20,9 @@ public class DonationGoodsVO extends PageVO{
      * 捐赠物品种类id
      * */
     private Long productKindId;
+
+    /**
+     * 用户id
+     * */
+    private Long userId;
 }

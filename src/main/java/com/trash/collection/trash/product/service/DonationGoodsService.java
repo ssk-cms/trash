@@ -37,4 +37,9 @@ public interface DonationGoodsService extends IService<DonationGoods> {
      * 更新捐赠物品物流状态--商品出库
      * */
     void stockRemove(DonationGoods donationGoods);
+
+    /**
+     * 用户查看自己捐赠物品列表
+     * */
+    Page<DonationGoods> getListByUser(DonationGoodsVO donationGoodsVO);
 }

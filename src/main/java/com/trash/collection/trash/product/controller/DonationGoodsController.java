@@ -5,6 +5,7 @@ import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.VO.DonationGoodsVO;
 import com.trash.collection.trash.product.domain.DonationGoods;
 import com.trash.collection.trash.product.service.DonationGoodsService;
+import com.trash.collection.trash.product.service.DonationLogisticsMsgService;
 import com.trash.collection.trash.product.service.ProductKindService;
 import com.trash.collection.trash.score.domain.DonationGoodsOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class DonationGoodsController {
 
     @Autowired
     private ProductKindService productKindService;
+
+    @Autowired
+    private DonationLogisticsMsgService logisticsMsgService;
 
     /**
      * 获取捐赠物品列表
@@ -95,6 +99,35 @@ public class DonationGoodsController {
         }
         Response response = new Response();
         this.goodsService.stockRemove(donationGoods);
+        return response;
+    }
+
+    /**
+     * 用户查看自己捐赠的物品信息
+     * */
+    @GetMapping("/getListByUser")
+    public Response getListByUser(DonationGoodsVO donationGoodsVO){
+        if (Objects.isNull(donationGoodsVO)){
+            return productKindService.judgeParam();
+        }
+        if (Objects.isNull(donationGoodsVO.getUserId())){
+            return productKindService.judgeParam();
+        }
+        Response response = new Response();
+        response.setData(goodsService.getListByUser(donationGoodsVO));
+        return response;
+    }
+
+    /**
+     * 用户查看捐赠物品的物流信息
+     * */
+    @GetMapping("/getLogistics")
+    public Response getLogistics(Long logisticsId){
+        if (Objects.isNull(logisticsId)){
+            return productKindService.judgeParam();
+        }
+        Response response = new Response();
+        response.setData(logisticsMsgService.selectById(logisticsId));
         return response;
     }
 

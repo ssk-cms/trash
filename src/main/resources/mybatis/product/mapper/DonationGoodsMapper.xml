@@ -25,11 +25,27 @@
             <if test="goodsName != null and goodsName != ''">
                 product_name LIKE concat ( '%', #{goodsName}, '%' )
             </if>
-            <if test="state != null and state != ''">
+            <if test="state != null">
                 AND state = #{state}
             </if>
             <if test="productKindId != null and productKindId != ''">
                 AND product_kind_id = #{productKindId}
+            </if>
+        </where>
+        ORDER BY create_time desc
+    </select>
+    <select id="getListByUser" resultType="com.trash.collection.trash.product.domain.DonationGoods">
+        SELECT
+        *
+        FROM
+        pr_donation_goods
+        <where>
+            user_id = #{userId}
+            <if test="goodsName != null and goodsName != ''">
+                AND product_name LIKE concat ( '%', #{goodsName}, '%' )
+            </if>
+            <if test="state != null">
+                AND state = #{state}
             </if>
         </where>
         ORDER BY create_time desc
