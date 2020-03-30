@@ -1,6 +1,7 @@
 package com.trash.collection.trash.score.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.product.domain.DonationGoods;
 import com.trash.collection.trash.score.VO.DonationGoodsOrderVO;
 import com.trash.collection.trash.score.VO.UserGoodsOrderVO;
 import com.trash.collection.trash.score.domain.DonationGoodsOrder;
@@ -30,4 +31,9 @@ public interface DonationGoodsOrderService extends IService<DonationGoodsOrder> 
      * 用户捐赠订单列表
      * */
     Page<DonationGoodsOrder> getListByUser(UserGoodsOrderVO userGoodsOrderVO);
+
+    /**
+     * 用户下单（捐赠物品）
+     * */
+    void placeOrder(DonationGoodsOrder donationGoodsOrder);
 }

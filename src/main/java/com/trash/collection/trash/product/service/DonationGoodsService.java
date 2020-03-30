@@ -42,4 +42,9 @@ public interface DonationGoodsService extends IService<DonationGoods> {
      * 用户查看自己捐赠物品列表
      * */
     Page<DonationGoods> getListByUser(DonationGoodsVO donationGoodsVO);
+
+    /**
+     * 新增捐赠商品信息
+     * */
+    void add(DonationGoods donationGoods);
 }

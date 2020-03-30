@@ -131,5 +131,19 @@ public class DonationGoodsController {
         return response;
     }
 
+    /**
+     * 用户填写捐赠物品相关信息
+     * */
+    @PostMapping("/add")
+    public Response add(@RequestBody DonationGoods donationGoods){
+        if (Objects.isNull(donationGoods)){
+            return this.productKindService.judgeParam();
+        }
+        Response response = new Response();
+        this.goodsService.add(donationGoods);
+        return response;
+    }
+
+
 }
 

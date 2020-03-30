@@ -2,6 +2,7 @@ package com.trash.collection.trash.score.controller;
 
 
 import com.trash.collection.trash.common.Response;
+import com.trash.collection.trash.product.domain.DonationGoods;
 import com.trash.collection.trash.product.service.ProductKindService;
 import com.trash.collection.trash.score.VO.DonationGoodsOrderVO;
 import com.trash.collection.trash.score.VO.UserGoodsOrderVO;
@@ -61,6 +62,22 @@ public class DonationGoodsOrderController {
         }
         Response response = new Response();
         response.setData(goodsOrderService.getListByUser(userGoodsOrderVO));
+        return response;
+    }
+
+    /**
+     * 用户下单（捐赠物品）
+     * */
+    @PostMapping("/placeOrder")
+    public Response placeOrder(@RequestBody DonationGoodsOrder donationGoodsOrder){
+        if (Objects.isNull(donationGoodsOrder)){
+            return productKindService.judgeParam();
+        }
+        if (Objects.isNull(donationGoodsOrder.getUserAddressId())){
+            return productKindService.judgeParam();
+        }
+        Response response = new Response();
+        this.goodsOrderService.placeOrder(donationGoodsOrder);
         return response;
     }
 }

@@ -220,4 +220,18 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
                 donationGoodsVO.getGoodsName()));
         return page;
     }
+
+    /**
+     * 新增捐赠商品信息
+     * */
+    @Override
+    @Transactional
+    public void add(DonationGoods donationGoods){
+        Date date = new Date();
+        donationGoods.setState(3)
+                .setLogisticsStatus(0)
+                .setCreateTime(date)
+                .setModifyTime(date);
+        this.baseMapper.insert(donationGoods);
+    }
 }

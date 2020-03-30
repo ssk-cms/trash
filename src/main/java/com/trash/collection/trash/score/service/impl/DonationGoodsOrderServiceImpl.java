@@ -12,10 +12,12 @@ import com.trash.collection.trash.score.domain.DonationGoodsOrder;
 import com.trash.collection.trash.score.dao.DonationGoodsOrderMapper;
 import com.trash.collection.trash.score.service.DonationGoodsOrderService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,6 +76,21 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
         Page<DonationGoodsOrder> page = new Page<>(userGoodsOrderVO.getPageIndex(),userGoodsOrderVO.getPageSize());
         page.setRecords(this.orderMapper.getListByUser(page,userGoodsOrderVO.getUserId(),userGoodsOrderVO.getState()));
         return page;
+    }
+
+    /**
+     * 用户下单（捐赠物品）
+     * */
+    @Override
+    @Transactional
+    public void placeOrder(DonationGoodsOrder donationGoodsOrder){
+        Date date = new Date();
+        donationGoodsOrder.setCreateTime(date)
+                .setModifyTime(date)
+                .setGoodsOrderNumber(String.format("%1$s%2$s",
+                        new SimpleDateFormat("yyyyMMddHHmmss").format(date), RandomStringUtils.randomNumeric(3)))
+                .setState(1);
+        this.baseMapper.insert(donationGoodsOrder);
     }
 
     /**

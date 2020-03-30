@@ -76,6 +76,7 @@ public class DonationGoods implements Serializable{
     private String remark;
     /**
      * 捐赠物品物流状态【
+     * 0、商品已添加
      * 10、等待工作人员上门回收；
      * 20、工作人员已上门；
      * 21、已派送工作人员按照约定时间上门；
@@ -86,7 +87,7 @@ public class DonationGoods implements Serializable{
     @TableField("logistics_status")
     private Integer logisticsStatus;
     /**
-     * 捐赠物品状态【1、积分审核中，0、禁用；2、积分已发放给用户】
+     * 捐赠物品状态【1、积分审核中，0、禁用；2、积分已发放给用户;3、商品已添加】
      * */
     private Integer state;
     /**
