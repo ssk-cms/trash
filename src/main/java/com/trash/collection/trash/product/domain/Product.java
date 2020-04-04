@@ -70,7 +70,7 @@ public class Product implements Serializable {
      * 兑换所需积分
      */
     @TableField("need_points")
-    private Integer needPoints;
+    private BigDecimal needPoints;
     /**
      * 商品总数
      */

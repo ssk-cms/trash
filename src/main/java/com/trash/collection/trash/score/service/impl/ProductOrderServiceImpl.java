@@ -1,15 +1,21 @@
 package com.trash.collection.trash.score.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.trash.collection.trash.score.VO.ProductOrderVO;
 import com.trash.collection.trash.score.domain.ProductOrder;
 import com.trash.collection.trash.score.dao.ProductOrderMapper;
+import com.trash.collection.trash.score.domain.ScoreUser;
 import com.trash.collection.trash.score.service.ProductOrderService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.trash.collection.trash.score.service.ScoreUserService;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -23,6 +29,9 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
 
     @Autowired
     ProductOrderMapper orderMapper;
+
+    @Autowired
+    ScoreUserService scoreUserService;
 
     /**
      * 积分兑换商品订单列表
@@ -45,5 +54,59 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
                 .setTrackingNumber(productOrder.getTrackingNumber())
                 .setModifyTime(new Date());
         this.orderMapper.updateById(order);
+    }
+
+    /**
+     * 用户下单
+     * */
+    @Override
+    @Transactional
+    public void setOrder(ProductOrder productOrder, BigDecimal needPoints){
+        //用户下单
+        Date date = new Date();
+        productOrder.setOrderNumber(String.format("%1$s%2$s",
+                new SimpleDateFormat("yyyyMMddHHmmss").format(date), RandomStringUtils.randomNumeric(6)));
+        productOrder.setExpendScore(needPoints);
+        productOrder.setState(1);
+        productOrder.setCreateTime(date);
+        productOrder.setModifyTime(date);
+        this.baseMapper.insert(productOrder);
+        //用户剩余积分减去相应积分
+        this.updateUserScore(productOrder,needPoints);
+    }
+
+    /**
+     * 更新发货时间-快递单号
+     * */
+    @Override
+    @Transactional
+    public void updateTime(ProductOrder productOrder){
+        productOrder.setModifyTime(new Date())
+                .setState(4);
+        this.baseMapper.updateById(productOrder);
+    }
+
+    /**
+     * 更新用户剩余积分
+     * */
+    private void updateUserScore(ProductOrder productOrder, BigDecimal needPoints){
+        ScoreUser scoreUser = this.scoreUserService.selectOne(new EntityWrapper<ScoreUser>().eq("user_id",productOrder.getUserId()));
+        BigDecimal resdiuceScore = scoreUser.getResiduceScore().subtract(needPoints);
+        ScoreUser scoreUser1 = new ScoreUser();
+        scoreUser1.setId(scoreUser.getId())
+                .setResiduceScore(resdiuceScore)
+                .setModifyTime(new Date());
+        this.scoreUserService.updateById(scoreUser1);
+    }
+
+    /**
+     * 更新收货时间，变更订单状态
+     * */
+    @Override
+    @Transactional
+    public void gainGoods(ProductOrder productOrder){
+        productOrder.setState(3)
+                .setModifyTime(new Date());
+        this.baseMapper.updateById(productOrder);
     }
 }

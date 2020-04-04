@@ -37,4 +37,10 @@ public interface ProductKindService extends IService<ProductKind> {
      * 判断传入参数是否完整
      * */
     Response judgeParam();
+
+    /**
+     * 判断传入参数是否完整
+     * @param message
+     * */
+    Response judge(String message);
 }

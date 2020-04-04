@@ -78,4 +78,17 @@ public class ProductKindServiceImpl extends ServiceImpl<ProductKindMapper, Produ
                 .setMessage("请将完整信息进行提交");
         return response;
     }
+
+    /**
+     * 判断传入参数是否完整
+     * @param message
+     * */
+    @Override
+    public Response judge(String message){
+        Response response = new Response();
+        response.setCode(StatusCode.Data_Not_Complete)
+                .setStatusCode(StatusCode.Data_Not_Complete)
+                .setMessage(message);
+        return response;
+    }
 }

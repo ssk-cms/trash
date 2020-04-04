@@ -77,7 +77,7 @@ public class ProductOrder implements Serializable {
     @TableField("tracking_number")
     private String trackingNumber;
     /**
-     * 订单状态【1、在用，2、无效，3、已完成】
+     * 订单状态【1、在用，2、无效，3、已完成,4、已发货】
      */
     private Integer state;
     /**
