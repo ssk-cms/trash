@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -43,7 +44,8 @@ public class Product implements Serializable {
      * 商品种类id
      */
     @TableField("product_kind_id")
-    @NotNull(message = "请选择商品类型")
+    @NotNull(message = "请选择商品种类")
+    @NotEmpty(message = "请选择商品种类")
     private Long productKindId;
     /**
      * 商品名称

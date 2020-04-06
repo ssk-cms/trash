@@ -23,5 +23,15 @@
         </where>
         ORDER BY create_time desc
     </select>
+    <select id="selectTotal" resultType="java.lang.Integer">
+        SELECT
+            count( * )
+        FROM
+            pr_product_kind
+        WHERE
+            state = 1
+        ORDER BY
+            create_time DESC
+    </select>
 
 </mapper>

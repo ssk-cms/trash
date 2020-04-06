@@ -19,6 +19,7 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("/product/product")
+@CrossOrigin
 public class ProductController {
 
     @Autowired

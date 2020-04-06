@@ -19,6 +19,7 @@ import java.util.Objects;
  * @since 2020-01-19
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/product/productKind")
 public class ProductKindController {
 

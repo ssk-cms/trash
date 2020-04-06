@@ -18,4 +18,9 @@ import java.util.List;
 public interface ProductKindMapper extends BaseMapper<ProductKind> {
 
     List<ProductKind> selectProductKind(Page<ProductKind> page, @Param("param") String param,@Param("state") Integer state);
+
+    /**
+     * c查看商品种类总的记录数
+     * */
+    int selectTotal(Integer state);
 }

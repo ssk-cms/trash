@@ -98,6 +98,12 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+<!--        <plugins>    &lt;!&ndash; 分页查询插件 &ndash;&gt;-->
+<!--            <plugin interceptor="com.baomidou.mybatisplus.plugins.PaginationInterceptor">-->
+<!--                <property name="dialectType" value="mysql"/>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+
     </build>
 
 </project>

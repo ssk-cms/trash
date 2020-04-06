@@ -20,5 +20,11 @@ public interface ActivityMsgMapper extends BaseMapper<ActivityMsg> {
     /**
      * 查看活动列表
      */
-    List<ActivityMsg> selectMsgList(Page<ActivityMsg> page,@Param("param") String param,@Param("state") Integer state);
+    List<ActivityMsg> selectMsgList(Page page,@Param("param") String param,@Param("state") Integer state);
+
+    /**
+     * 查询列表所有的数据
+     *
+     * @param state*/
+    int getTotal(Integer state);
 }

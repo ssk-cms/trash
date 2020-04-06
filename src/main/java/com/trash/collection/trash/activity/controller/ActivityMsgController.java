@@ -26,6 +26,8 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("/activity/activityMsg")
+//@CrossOrigin(origins = "", maxAge = 3600)
+@CrossOrigin
 public class ActivityMsgController {
 
     @Autowired
@@ -55,8 +57,7 @@ public class ActivityMsgController {
                     .setStatusCode(StatusCode.Invalid_Code)
                     .setMessage("请将相关参数补充完整！");
         } else {
-            Page<ActivityMsg> page = new Page<>(pageIndex, pageSize);
-            response.setData(activityMsgService.selectPage(page, param, state));
+            response.setData(activityMsgService.selectPage(new Page<>(pageIndex, pageSize), param, state));
         }
         return response;
     }
@@ -101,15 +102,15 @@ public class ActivityMsgController {
      * 上传图片
      */
     @PostMapping("/uploadImg")
-    public Response uploadImg(@RequestParam("img") MultipartFile multipartFile, HttpServletRequest request) {
+    public Response uploadImg(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         Response response = new Response();
         //定义要上传文件 的存放路径
         String localPath="d:/home/data/image";
         //获得文件名字
-        String fileName=multipartFile.getOriginalFilename();
+        String fileName=file.getOriginalFilename();
         fileName= FileNameUtil.getFileName(fileName);
 //        File dest = new File(localPath + fileName);
-        if(FileUploadUtil.upload(multipartFile, localPath, fileName)){
+        if(FileUploadUtil.upload(file, localPath, fileName)){
             // 将上传的文件写入到服务器端文件夹
             // 获取当前项目运气的完整url
             String requestURL = request.getRequestURL().toString();
@@ -127,5 +128,6 @@ public class ActivityMsgController {
         }
         return response;
     }
+
 }
 

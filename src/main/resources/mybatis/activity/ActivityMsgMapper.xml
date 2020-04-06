@@ -28,5 +28,13 @@
         </where>
         ORDER BY create_time desc
     </select>
+    <select id="getTotal" resultType="java.lang.Integer">
+        SELECT
+            count( * )
+        FROM
+            ac_activity_msg
+        WHERE
+            state = #{state}
+    </select>
 
 </mapper>

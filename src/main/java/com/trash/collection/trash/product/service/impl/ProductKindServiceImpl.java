@@ -55,6 +55,7 @@ public class ProductKindServiceImpl extends ServiceImpl<ProductKindMapper, Produ
      */
     @Override
     public Page<ProductKind> list(Page<ProductKind> page, String param, Integer state) {
+        page.setTotal(this.baseMapper.selectTotal(state));
         page.setRecords(this.productKindMapper.selectProductKind(page, param, state));
         return page;
     }

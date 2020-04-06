@@ -1,7 +1,6 @@
 package com.trash.collection.trash.product.service.impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLPort;
 import com.trash.collection.trash.product.VO.WorkerMessageVO;
 import com.trash.collection.trash.product.domain.WorkerMessage;
 import com.trash.collection.trash.product.dao.WorkerMessageMapper;
