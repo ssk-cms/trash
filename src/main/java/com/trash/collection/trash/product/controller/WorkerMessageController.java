@@ -82,5 +82,18 @@ public class WorkerMessageController {
         return response;
     }
 
+    /**
+     * 修改工作人员状态-离职
+     * */
+    @GetMapping("/editState")
+    public Response editState(Long workerId){
+        if (Objects.isNull(workerId)){
+            return this.productKindService.judge("请选择工作人员");
+        }
+        Response response = new Response();
+        this.messageService.editState(workerId);
+        return response;
+    }
+
 }
 

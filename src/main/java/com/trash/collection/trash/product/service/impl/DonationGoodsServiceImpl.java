@@ -93,11 +93,22 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
     private void updateUserScore(DonationGoods donationGoods) {
         Date date = new Date();
         ScoreUser scoreUser = scoreUserService.selectOne(new EntityWrapper<ScoreUser>().eq("user_id", donationGoods.getUserId()));
-        BigDecimal totalscore = scoreUser.getTotalScore().add(donationGoods.getAcquireScore());
-        ScoreUser score = new ScoreUser();
-        score.setModifyTime(date)
-                .setTotalScore(totalscore);
-        scoreUserService.update(score, new EntityWrapper<ScoreUser>().eq("user_id", donationGoods.getUserId()));
+        //如果未查询到用户积分信息，则新增用户的积分信息,否则更新用户的积分信息
+        if (Objects.isNull(scoreUser)){
+            ScoreUser scoreUser1 = new ScoreUser();
+            scoreUser1.setUserId(donationGoods.getUserId())
+                    .setResiduceScore(donationGoods.getAcquireScore())
+                    .setTotalScore(donationGoods.getAcquireScore())
+                    .setModifyTime(date)
+                    .setCreateTime(date);
+            this.scoreUserService.insert(scoreUser1);
+        }else {
+            BigDecimal totalscore = scoreUser.getTotalScore().add(donationGoods.getAcquireScore());
+            ScoreUser score = new ScoreUser();
+            score.setModifyTime(date)
+                    .setTotalScore(totalscore);
+            scoreUserService.update(score, new EntityWrapper<ScoreUser>().eq("user_id", donationGoods.getUserId()));
+        }
     }
 
     /**
@@ -174,7 +185,7 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
     private void setWorkerStatus(DonationGoods donationGoods) {
         //查询该捐赠物品的捐款订单信息
         DonationGoodsOrder goodsOrder = this.goodsOrderService.selectOne(
-                new EntityWrapper<DonationGoodsOrder>().eq("donationGoodsId", donationGoods.getId()));
+                new EntityWrapper<DonationGoodsOrder>().eq("donation_goods_id", donationGoods.getId()));
         if (Objects.isNull(goodsOrder)){
             logger.info("该捐赠物品没有相关捐赠订单！请核对！");
             return;

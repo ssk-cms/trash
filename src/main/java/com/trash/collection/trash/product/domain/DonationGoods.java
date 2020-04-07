@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -54,6 +55,7 @@ public class DonationGoods implements Serializable{
      * 上门取货时间
      */
     @TableField("visit_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date visitTime;
     /**
      * 捐赠数量
@@ -87,18 +89,20 @@ public class DonationGoods implements Serializable{
     @TableField("logistics_status")
     private Integer logisticsStatus;
     /**
-     * 捐赠物品状态【1、积分审核中，0、禁用；2、积分已发放给用户;3、商品已添加】
+     * 捐赠物品状态【1、积分审核中，0、禁用；2、积分已发放给用户;3、捐赠物品信息已添加，待下单】
      * */
     private Integer state;
     /**
      * 创建时间
      */
     @TableField("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date createTime;
     /**
      * 修改时间
      */
     @TableField("modify_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date modifyTime;
 
 }

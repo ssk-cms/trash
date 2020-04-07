@@ -59,4 +59,16 @@ public class WorkerMessageServiceImpl extends ServiceImpl<WorkerMessageMapper, W
         workerMessage.setModifyTime(new Date());
         messageService.updateById(workerMessage);
     }
+
+    /**
+     * 改变工作人员状态为离职
+     * */
+    @Override
+    @Transactional
+    public void editState(Long workerId){
+        WorkerMessage workerMessage = new WorkerMessage().setId(workerId)
+                .setState(0)
+                .setModifyTime(new Date());
+        this.baseMapper.updateById(workerMessage);
+    }
 }

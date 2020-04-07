@@ -27,4 +27,9 @@ public interface WorkerMessageService extends IService<WorkerMessage> {
      * 编辑工作人员信息
      * */
     void edit(WorkerMessage workerMessage);
+
+    /**
+     * 改变工作人员状态为离职
+     * */
+    void editState(Long workerId);
 }

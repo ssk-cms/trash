@@ -96,18 +96,20 @@ public class Product implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date productSoldOutTime;
     /**
-     * 商品状态【1、在用，0、下架】
+         * 商品状态【1、在用，0、下架】
      */
     private Integer state;
     /**
      * 创建时间
      */
     @TableField("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date createTime;
     /**
      * 修改时间
      */
     @TableField("modify_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date modifyTime;
 
 }
