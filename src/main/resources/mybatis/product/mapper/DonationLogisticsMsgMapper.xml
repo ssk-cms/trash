@@ -13,5 +13,13 @@
         <result column="create_time" property="createTime"/>
         <result column="modify_time" property="modifyTime"/>
     </resultMap>
+    <select id="selectByDonationsGoodsId"
+            resultType="com.trash.collection.trash.product.domain.DonationLogisticsMsg">
+        select
+        *
+        from pr_donation_logistics_msg
+        where donate_goods_id = #{donationsGoodsId}
+        order by create_time DESC
+    </select>
 
 </mapper>

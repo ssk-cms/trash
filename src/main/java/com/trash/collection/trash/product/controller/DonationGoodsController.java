@@ -4,14 +4,18 @@ package com.trash.collection.trash.product.controller;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.VO.DonationGoodsVO;
 import com.trash.collection.trash.product.domain.DonationGoods;
+import com.trash.collection.trash.product.domain.DonationLogisticsMsg;
 import com.trash.collection.trash.product.service.DonationGoodsService;
 import com.trash.collection.trash.product.service.DonationLogisticsMsgService;
 import com.trash.collection.trash.product.service.ProductKindService;
 import com.trash.collection.trash.score.domain.DonationGoodsOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -126,12 +130,17 @@ public class DonationGoodsController {
      * 用户查看捐赠物品的物流信息
      * */
     @GetMapping("/getLogistics")
-    public Response getLogistics(Long logisticsId){
-        if (Objects.isNull(logisticsId)){
+    public Response getLogistics(Long donationsGoodsId){
+        if (Objects.isNull(donationsGoodsId)){
             return productKindService.judgeParam();
         }
         Response response = new Response();
-        response.setData(logisticsMsgService.selectById(logisticsId));
+        List<DonationLogisticsMsg> logisticsMsgs = logisticsMsgService.selectByDonationsGoodsId(donationsGoodsId);
+        if (CollectionUtils.isEmpty(logisticsMsgs)){
+            response.setMessage("该物品暂无物流信息");
+            return response;
+        }
+        response.setData(logisticsMsgs);
         return response;
     }
 

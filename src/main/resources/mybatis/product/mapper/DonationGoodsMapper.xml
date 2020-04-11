@@ -23,7 +23,7 @@
         pr_donation_goods
         <where>
             <if test="goodsName != null and goodsName != ''">
-                product_name LIKE concat ( '%', #{goodsName}, '%' )
+                goods_name LIKE concat ( '%', #{goodsName}, '%' )
             </if>
             <if test="state != null">
                 AND state = #{state}
@@ -42,7 +42,7 @@
         <where>
             user_id = #{userId}
             <if test="goodsName != null and goodsName != ''">
-                AND product_name LIKE concat ( '%', #{goodsName}, '%' )
+                AND goods_name LIKE concat ( '%', #{goodsName}, '%' )
             </if>
             <if test="state != null">
                 AND state = #{state}

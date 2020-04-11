@@ -6,6 +6,8 @@ import com.trash.collection.trash.product.service.DonationLogisticsMsgService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *  服务实现类
  *
@@ -15,4 +17,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class DonationLogisticsMsgServiceImpl extends ServiceImpl<DonationLogisticsMsgMapper, DonationLogisticsMsg>implements DonationLogisticsMsgService {
 
+    /**
+     * 查询捐赠物品物流信息
+     * */
+    @Override
+    public List<DonationLogisticsMsg> selectByDonationsGoodsId(Long donationsGoodsId){
+        List<DonationLogisticsMsg> logisticsMsgs = this.baseMapper.selectByDonationsGoodsId(donationsGoodsId);
+        return logisticsMsgs;
+    }
 }

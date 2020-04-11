@@ -28,13 +28,13 @@
         LEFT JOIN pr_product_kind pk ON pp.product_kind_id = pk.id
         <where>
             <if test="param != null and param != ''">
-                product_name LIKE concat ( '%', #{param}, '%' )
+                pp.product_name LIKE concat ( '%', #{param}, '%' )
             </if>
-            <if test="state != null and state != ''">
-                AND state = #{state}
+            <if test="state != null">
+                AND pp.state = #{state}
             </if>
-            <if test="productKindId != null and productKindId != ''">
-                AND product_kind_id = #{productKindId}
+            <if test="productKindId != null">
+                AND pp.product_kind_id = #{productKindId}
             </if>
         </where>
         ORDER BY create_time desc

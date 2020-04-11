@@ -20,6 +20,7 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("/product/workerMessage")
+@CrossOrigin
 public class WorkerMessageController {
 
     @Autowired
