@@ -1,8 +1,10 @@
 package com.trash.collection.trash.product.service.impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.product.VO.ProductVO;
 import com.trash.collection.trash.product.domain.Product;
 import com.trash.collection.trash.product.dao.ProductMapper;
+import com.trash.collection.trash.product.domain.ProductKind;
 import com.trash.collection.trash.product.service.ProductService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *  服务实现类
@@ -39,7 +42,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product>imple
          * 查看商品列表
          * */
         @Override
-        public Page<Product> productList(Page<Product> page,String param,Integer state,Long productKindId){
+        public Page<ProductVO> productList(Page<ProductVO> page,String param,Integer state,Long productKindId){
                 page.setRecords(productMapper.productList(page,param,state,productKindId));
                 return page;
         }

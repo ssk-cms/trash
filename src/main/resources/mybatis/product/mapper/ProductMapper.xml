@@ -19,11 +19,13 @@
         <result column="create_time" property="createTime"/>
         <result column="modify_time" property="modifyTime"/>
     </resultMap>
-    <select id="productList" resultType="com.trash.collection.trash.product.domain.Product">
+    <select id="productList" resultType="com.trash.collection.trash.product.VO.ProductVO">
         SELECT
-        *
+        pp.*,
+        pk.product_name productKindName
         FROM
-        pr_product
+        pr_product pp
+        LEFT JOIN pr_product_kind pk ON pp.product_kind_id = pk.id
         <where>
             <if test="param != null and param != ''">
                 product_name LIKE concat ( '%', #{param}, '%' )

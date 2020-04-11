@@ -1,6 +1,7 @@
 package com.trash.collection.trash.product.dao;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.product.VO.ProductVO;
 import com.trash.collection.trash.product.domain.Product;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -17,5 +18,5 @@ import java.util.List;
 @Mapper
 public interface ProductMapper extends BaseMapper<Product> {
 
-    List<Product> productList(Page<Product> page, @Param("param") String param, @Param("state") Integer state, @Param("productKindId") Long productKindId);
+    List<ProductVO> productList(Page<ProductVO> page, @Param("param") String param, @Param("state") Integer state, @Param("productKindId") Long productKindId);
 }

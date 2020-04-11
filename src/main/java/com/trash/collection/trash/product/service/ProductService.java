@@ -1,6 +1,7 @@
 package com.trash.collection.trash.product.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.product.VO.ProductVO;
 import com.trash.collection.trash.product.domain.Product;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -17,7 +18,7 @@ public interface ProductService extends IService<Product> {
     /**
      * 查看商品列表
      * */
-    Page<Product> productList(Page<Product> page,String param,Integer state,Long productKindId);
+    Page<ProductVO> productList(Page<ProductVO> page, String param, Integer state, Long productKindId);
 
     /**
      * 编辑商品

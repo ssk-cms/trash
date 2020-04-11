@@ -3,6 +3,7 @@ package com.trash.collection.trash.product.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.trash.collection.trash.common.Response;
+import com.trash.collection.trash.product.VO.ProductVO;
 import com.trash.collection.trash.product.domain.Product;
 import com.trash.collection.trash.product.service.ProductKindService;
 import com.trash.collection.trash.product.service.ProductService;
@@ -44,7 +45,7 @@ public class ProductController {
     @GetMapping("/productList")
     public Response productList(Integer pageIndex, Integer pageSize, String param, Integer state, Long productKindId) {
         Response response = new Response();
-        Page<Product> page = new Page<>(pageIndex, pageSize);
+        Page<ProductVO> page = new Page<>(pageIndex, pageSize);
         response.setData(productService.productList(page, param, state, productKindId));
         return response;
     }
