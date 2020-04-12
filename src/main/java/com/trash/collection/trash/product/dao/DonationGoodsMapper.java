@@ -1,6 +1,7 @@
 package com.trash.collection.trash.product.dao;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.product.VO.GoodsListVO;
 import com.trash.collection.trash.product.domain.DonationGoods;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -20,8 +21,8 @@ public interface DonationGoodsMapper extends BaseMapper<DonationGoods> {
     /**
      * 获取捐赠物品列表
      */
-    List<DonationGoods> getDonationGoodsList(Page<DonationGoods> page, @Param("state") Integer state,
-                                             @Param("goodsName") String goodsName, @Param("productKindId") Long productKindId);
+    List<GoodsListVO> getDonationGoodsList(Page<GoodsListVO> page, @Param("state") Integer state,
+                                           @Param("goodsName") String goodsName, @Param("productKindId") Long productKindId);
 
     /**
      * 获取用户自己捐赠物品列表

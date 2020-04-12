@@ -19,3 +19,11 @@ fileServer:
   pictureMax: 5242880
   # 附件大小
   fileMax: 31457280
+
+fq:
+  jwt:
+    secret: fq@Login(Auth}*&myBlogyyf  # 登录校验的密钥
+    pubKeyPath: D:\id_rsa.pub  # 公钥地址
+    priKeyPath: D:\id_rsq.pri  # 私钥地址
+    expire: 21600  # 过期时间，单位分钟
+    cookieName: TRASH_TOKEN  # cookie名称

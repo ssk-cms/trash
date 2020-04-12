@@ -26,6 +26,7 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("/product/donationGoods")
+@CrossOrigin
 public class DonationGoodsController {
 
     @Autowired

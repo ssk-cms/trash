@@ -91,6 +91,10 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
                         new SimpleDateFormat("yyyyMMddHHmmss").format(date), RandomStringUtils.randomNumeric(3)))
                 .setState(1);
         this.baseMapper.insert(donationGoodsOrder);
+        //设置捐赠商品的物流信息
+        this.setlogisticsMsg(donationGoodsOrder);
+        //修改捐赠商品中的捐赠物品状态
+        this.setGoodsLogisticsStatus(donationGoodsOrder);
     }
 
     /**
@@ -113,8 +117,8 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
         logisticsMsg.setDonateGoodsId(goodsOrder.getDonationGoodsId())
                 .setDonationGoodsOrderId(goodsOrder.getId())
                 .setWorkerMessageId(goodsOrder.getWorkerMessageId())
-                .setLogisticsMsgTitle("已安排工作人员上门")
-                .setLogisticsMsgContent("已安排工作人员按照您预定的时间上门回收您捐赠的物品，如需查看工作人员信息，请在捐赠订单中查看！")
+                .setLogisticsMsgTitle("等待工作人员上门")
+                .setLogisticsMsgContent("您已下单，正等待工作人员上门！")
                 .setCreateTime(date)
                 .setModifyTime(date);
         logisticsMsgService.insert(logisticsMsg);
@@ -125,7 +129,7 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
      * */
     private void setGoodsLogisticsStatus(DonationGoodsOrder goodsOrder) {
         DonationGoods goods = new DonationGoods().setId(goodsOrder.getDonationGoodsId())
-                .setLogisticsStatus(21)
+                .setLogisticsStatus(10)
                 .setModifyTime(new Date());
         goodsService.updateById(goods);
     }

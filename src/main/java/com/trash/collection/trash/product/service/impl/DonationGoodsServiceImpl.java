@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.VO.DonationGoodsVO;
+import com.trash.collection.trash.product.VO.GoodsListVO;
 import com.trash.collection.trash.product.domain.DonationGoods;
 import com.trash.collection.trash.product.dao.DonationGoodsMapper;
 import com.trash.collection.trash.product.domain.DonationLogisticsMsg;
@@ -61,8 +62,8 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
      * 获取捐赠信息列表
      */
     @Override
-    public Page<DonationGoods> getDonationGoodsList(DonationGoodsVO goodsVO) {
-        Page<DonationGoods> page = new Page<>(goodsVO.getPageIndex(), goodsVO.getPageSize());
+    public Page<GoodsListVO> getDonationGoodsList(DonationGoodsVO goodsVO) {
+        Page<GoodsListVO> page = new Page<>(goodsVO.getPageIndex(), goodsVO.getPageSize());
         page.setRecords(goodsMapper.getDonationGoodsList(page, goodsVO.getState(), goodsVO.getGoodsName(), goodsVO.getProductKindId()));
         return page;
     }

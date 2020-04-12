@@ -10,6 +10,9 @@ import com.trash.collection.trash.product.service.WorkerMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -93,6 +96,20 @@ public class WorkerMessageController {
         }
         Response response = new Response();
         this.messageService.editState(workerId);
+        return response;
+    }
+
+    /**
+     * 查询所有[空闲]工作人员信息
+     * */
+    @GetMapping("/selectWorkerMessage")
+    public Response selectWorkerMessage(int state){
+        if (Objects.isNull(state)){
+            return productKindService.judge("请输入工作人员状态");
+        }
+        Response response = new Response();
+        List<WorkerMessage> workerMessageList = this.messageService.selectList(new EntityWrapper<WorkerMessage>().eq("state",state));
+        response.setData(workerMessageList);
         return response;
     }
 

@@ -11,4 +11,8 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface UserAddressService extends IService<UserAddress> {
 
+    /**
+     * 新增地址信息
+     * */
+    void addAddress(UserAddress userAddress);
 }

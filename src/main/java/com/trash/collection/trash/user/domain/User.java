@@ -31,13 +31,14 @@ public class User implements Serializable{
      */
     private String username;
     /**
-     * 昵称
-     */
-    private String nickname;
-    /**
      * 密码
      */
     private String password;
+    /**
+     * 是否是管理员
+     * */
+    @TableField("is_superuser")
+    private Integer isSuperuser;
     /**
      * 邮箱
      */
@@ -47,14 +48,13 @@ public class User implements Serializable{
      */
     private String mobile;
     /**
+     * 盐
+     * */
+    private String salt;
+    /**
      * 状态  0：禁用   1：正常
      */
     private Integer status;
-    /**
-     * 创建人id
-     */
-    @TableField("create_user_id")
-    private Long createUserId;
     /**
      * 创建时间
      */

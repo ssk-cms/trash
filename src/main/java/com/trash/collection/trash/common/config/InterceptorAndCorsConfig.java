@@ -9,30 +9,23 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class uploadFileConfig extends WebMvcConfigurationSupport {
+public class InterceptorAndCorsConfig implements WebMvcConfigurer {
 
-    @Autowired
+    /*@Autowired
     private LoginedDotGo loginedDotGo;
 
     @Autowired
     private NotLoginedDotGo notLoginedDotGo;
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry){
-        registry.addResourceHandler("/images/**").addResourceLocations("file:/d:/home/data/image/");
-        super.addResourceHandlers(registry);
-    }
-
-    /**
+    *//**
      * 添加拦截器
      * addInterceptors：添加你自定义拦截器的实现逻辑类
      * addPathPatterns：添加你要拦截的请求路径，如果有多个路径，就继续addPathPatterns
      * excludePathPatterns：添加你不需要拦截的请求路径
-     */
+     *//*
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
@@ -59,10 +52,10 @@ public class uploadFileConfig extends WebMvcConfigurationSupport {
 
     }
 
-    /**
+    *//**
      * 使用filter来设置允许cors
-     * @return*/
-
+     * @return
+     *//*
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
@@ -73,5 +66,22 @@ public class uploadFileConfig extends WebMvcConfigurationSupport {
         UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
         configSource.registerCorsConfiguration("/**", config);
         return new CorsFilter(configSource);
+    }*/
+
+    /**
+     * 添加允许跨域的Origins
+     * @param registry
+     */
+    /*@Override
+    public void addCorsMappings(CorsRegistry registry) {
+
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowCredentials(true)
+                .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE","OPTIONS")
+                .maxAge(3600);
+
     }
+    */
+
 }

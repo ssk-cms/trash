@@ -16,23 +16,27 @@
                     <result column="create_time" property="createTime"/>
                     <result column="modify_time" property="modifyTime"/>
         </resultMap>
-    <select id="getDonationGoodsList" resultType="com.trash.collection.trash.product.domain.DonationGoods">
+    <select id="getDonationGoodsList" resultType="com.trash.collection.trash.product.VO.GoodsListVO">
         SELECT
-        *
+        prdg.*,
+        prk.product_name productKindName,
+        su.username
         FROM
-        pr_donation_goods
+        pr_donation_goods prdg
+        LEFT JOIN pr_product_kind prk ON prk.id = prdg.product_kind_id
+        LEFT JOIN sys_user su ON su.user_id = prdg.user_id
         <where>
             <if test="goodsName != null and goodsName != ''">
-                goods_name LIKE concat ( '%', #{goodsName}, '%' )
+                prdg.goods_name LIKE concat ( '%', #{goodsName}, '%' )
             </if>
             <if test="state != null">
-                AND state = #{state}
+                AND prdg.state = #{state}
             </if>
             <if test="productKindId != null and productKindId != ''">
-                AND product_kind_id = #{productKindId}
+                AND prdg.product_kind_id = #{productKindId}
             </if>
         </where>
-        ORDER BY create_time desc
+        ORDER BY prdg.create_time desc
     </select>
     <select id="getListByUser" resultType="com.trash.collection.trash.product.domain.DonationGoods">
         SELECT

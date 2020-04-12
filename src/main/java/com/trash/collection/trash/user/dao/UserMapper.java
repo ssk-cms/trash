@@ -13,4 +13,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
+    /**
+     * 根据用户名查询用户信息
+     * */
+    User selectByName(String username);
 }

@@ -37,15 +37,15 @@
             <if test="orderNumber != null and orderNumber != ''">
                 dgo.goods_order_number LIKE concat ( '%', #{orderNumber}, '%' )
             </if>
-            <if test="state != null and state != ''">
-                AND state = #{state}
+            <if test="state != null">
+                AND dgo.state = #{state}
             </if>
             <if test="param != null and param != ''">
                 AND (dg.goods_name LIKE concat ( '%', #{param}, '%' )
                 or su.username LIKE concat('%',#{param},'%'))
             </if>
         </where>
-        ORDER BY dgo.create_time
+        ORDER BY dgo.create_time DESC
     </select>
     <select id="getListByUser" resultType="com.trash.collection.trash.score.domain.DonationGoodsOrder">
         select
