@@ -24,6 +24,7 @@ public class GlobalCorsConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", addCorsConfig());
-        return new CorsFilter(source);
+        CorsFilter corsFilter = new CorsFilter(source);
+        return corsFilter;
     }*/
 }

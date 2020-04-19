@@ -34,7 +34,7 @@ public class DonationLogisticsMsg implements Serializable {
     /**
      * 订单id
      */
-    @TableField("donation_goods_order_id")
+    @TableField("order_id")
     private Long donationGoodsOrderId;
     /**
      * 捐赠物品id

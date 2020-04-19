@@ -36,7 +36,8 @@ public class UserAddressController {
             return this.productKindService.judgeParam();
         }
         Response response = new Response();
-        response.setData(this.userAddressService.selectList(new EntityWrapper<UserAddress>().eq("user_id",userId)));
+        response.setData(this.userAddressService.selectList(new EntityWrapper<UserAddress>().eq("user_id",userId)
+                                        .eq("state",1)));
         return response;
     }
 
@@ -48,9 +49,13 @@ public class UserAddressController {
         if (Objects.isNull(userAddress)){
             return productKindService.judge("请添加相应的地址信息");
         }
+        if (Objects.isNull(userAddress.getUserId())){
+            return productKindService.judge("请输入用户id");
+        }
         Response response = new Response();
         this.userAddressService.addAddress(userAddress);
         return response;
     }
+
 }
 

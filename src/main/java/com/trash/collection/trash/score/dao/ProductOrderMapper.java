@@ -21,5 +21,10 @@ public interface ProductOrderMapper extends BaseMapper<ProductOrder> {
     /**
      * 查看积分兑换订单列表
      */
-    List<ProductOrderVO> getOrderList(Page<ProductOrderVO> page, @Param("param") String param);
+    List<ProductOrderVO> getOrderList(Page<ProductOrderVO> page, @Param("param") String param, @Param("state") Integer state,@Param("orderNumber") String orderNum);
+
+    /**
+     * 用户查看自己的积分兑换订单列表
+     */
+    List<ProductOrder> getListByUser(Page<ProductOrder> page, @Param("userId") Integer userId, @Param("state") Integer state);
 }

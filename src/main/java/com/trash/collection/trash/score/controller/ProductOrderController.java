@@ -2,6 +2,7 @@ package com.trash.collection.trash.score.controller;
 
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.domain.Product;
 import com.trash.collection.trash.product.service.ProductKindService;
@@ -14,6 +15,7 @@ import com.trash.collection.trash.score.service.ScoreUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -110,5 +112,21 @@ public class ProductOrderController {
         return response;
     }
 
+    /**
+     * 用户查看自己的积分兑换订单信息
+     * */
+    @GetMapping("/getOrderListByUser")
+    public Response gertListByUser(Integer userId,Integer state,Integer pageSize,Integer pageIndex){
+        if (Objects.isNull(userId) || Objects.isNull(state)){
+            return productKindService.judge("请选择用户或选择订单状态！");
+        }
+        if (Objects.isNull(pageIndex) || Objects.isNull(pageSize)){
+            return productKindService.judge("请选择页码和每页数量！");
+        }
+        Response response = new Response();
+        Page<ProductOrder> page = new Page<>(pageIndex,pageSize);
+        response.setData(this.productOrderService.getListByUser(page,userId,state));
+        return response;
+    }
 }
 

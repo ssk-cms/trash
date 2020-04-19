@@ -116,7 +116,7 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
         DonationLogisticsMsg logisticsMsg = new DonationLogisticsMsg();
         logisticsMsg.setDonateGoodsId(goodsOrder.getDonationGoodsId())
                 .setDonationGoodsOrderId(goodsOrder.getId())
-                .setWorkerMessageId(goodsOrder.getWorkerMessageId())
+//                .setWorkerMessageId(goodsOrder.getWorkerMessageId())
                 .setLogisticsMsgTitle("等待工作人员上门")
                 .setLogisticsMsgContent("您已下单，正等待工作人员上门！")
                 .setCreateTime(date)

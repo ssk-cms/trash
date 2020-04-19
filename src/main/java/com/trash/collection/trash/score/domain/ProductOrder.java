@@ -12,8 +12,10 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @author seth
@@ -60,11 +62,14 @@ public class ProductOrder implements Serializable {
      * 发货时间
      */
     @TableField("delivery_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date deliveryTime;
     /**
      * 收货时间
      */
     @TableField("recving_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date recvingTime;
     /**
      * 消费积分
@@ -84,11 +89,13 @@ public class ProductOrder implements Serializable {
      * 创建时间
      */
     @TableField("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date createTime;
     /**
      * 修改时间
      */
     @TableField("modify_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date modifyTime;
 
 

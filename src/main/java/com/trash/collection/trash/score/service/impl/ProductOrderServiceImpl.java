@@ -39,7 +39,7 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
     @Override
     public Page<ProductOrderVO> getOrderList(ProductOrderVO orderVO){
         Page<ProductOrderVO> page = new Page<>(orderVO.getPageIndex(),orderVO.getPageSize());
-        page.setRecords(orderMapper.getOrderList(page,orderVO.getParam()));
+        page.setRecords(orderMapper.getOrderList(page,orderVO.getParam(),orderVO.getState(),orderVO.getOrderNumber()));
         return page;
     }
 
@@ -108,5 +108,13 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
         productOrder.setState(3)
                 .setModifyTime(new Date());
         this.baseMapper.updateById(productOrder);
+    }
+
+    /**
+     * 用户查看自己的订单列表
+     * */
+    @Override
+    public Page<ProductOrder> getListByUser(Page<ProductOrder> page, Integer userId, Integer state){
+        return page.setRecords(this.baseMapper.getListByUser(page,userId,state));
     }
 }

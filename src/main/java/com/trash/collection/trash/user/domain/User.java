@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -25,7 +26,7 @@ public class User implements Serializable{
     private static final long serialVersionUID=1L;
 
     @TableId(value = "user_id", type = IdType.AUTO)
-    private Long userId;
+    private Integer userId;
     /**
      * 姓名
      */
@@ -35,7 +36,7 @@ public class User implements Serializable{
      */
     private String password;
     /**
-     * 是否是管理员
+     * 是否是超级用户[0、是；1、不是]
      * */
     @TableField("is_superuser")
     private Integer isSuperuser;
@@ -59,11 +60,13 @@ public class User implements Serializable{
      * 创建时间
      */
     @TableField("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date createTime;
     /**
      * 修改时间
      */
     @TableField("modify_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date modifyTime;
 
 }

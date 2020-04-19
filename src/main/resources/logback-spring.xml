@@ -39,7 +39,7 @@
     <!-- 注释掉，开发有需要自行放开-->
     <logger name="org.apache.ibatis" level="debug"/>
     <logger name="org.mybatis" level="debug"/>
-    <logger name="mybatis_com.ruibo.icms.*.modules.*.dao" level="debug"/>
-    <logger name="com.ruibo.icms" level="debug"/>
+    <logger name="mybatis_com.trash.collection.*.dao" level="debug"/>
+    <logger name="com.trash.trash" level="debug"/>
 
 </configuration>

@@ -56,5 +56,16 @@
     ORDER BY
         spo.create_time
     </select>
+    <select id="getListByUser" resultType="com.trash.collection.trash.score.domain.ProductOrder">
+      SELECT
+        *
+      FROM
+        sc_product_order
+      WHERE
+        state = #{state}
+        AND user_id = #{userId}
+      ORDER BY
+        create_time DESC
+    </select>
 
 </mapper>

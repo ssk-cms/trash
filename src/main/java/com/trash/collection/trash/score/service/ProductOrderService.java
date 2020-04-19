@@ -39,4 +39,9 @@ public interface ProductOrderService extends IService<ProductOrder> {
      * 更新收货时间，变更订单状态
      * */
     void gainGoods(ProductOrder productOrder);
+
+    /**
+     * 用户查看自己的订单列表
+     * */
+    Page<ProductOrder> getListByUser(Page<ProductOrder> page, Integer userId, Integer state);
 }

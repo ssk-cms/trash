@@ -28,7 +28,8 @@ public class UserAddressServiceImpl extends ServiceImpl<UserAddressMapper, UserA
         userAddress.setAddressType(1)
                 .setState(1)
                 .setCreateTime(date)
-                .setModifyTime(date);
+                .setModifyTime(date)
+                .setDefaultAddressState(0);
         this.baseMapper.insert(userAddress);
     }
 }
