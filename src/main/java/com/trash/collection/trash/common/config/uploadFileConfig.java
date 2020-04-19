@@ -43,6 +43,7 @@ public class uploadFileConfig extends WebMvcConfigurationSupport {
         };
         String[] pathPatterns2 = new String[] {
                 "/product/**",
+                "/score/**",
                 "/reply/replyWrite",
                 "/article/myArticles/**",
                 "/article/articleWrite",

@@ -2,6 +2,7 @@ package com.trash.collection.trash.product.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.common.NotLoginedDotGo;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.VO.DonationGoodsVO;
 import com.trash.collection.trash.product.VO.GoodsListVO;
@@ -14,9 +15,12 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.trash.collection.trash.product.service.DonationLogisticsMsgService;
 import com.trash.collection.trash.product.service.WorkerMessageService;
 import com.trash.collection.trash.score.domain.DonationGoodsOrder;
+import com.trash.collection.trash.score.domain.ScoreDetail;
 import com.trash.collection.trash.score.domain.ScoreUser;
 import com.trash.collection.trash.score.service.DonationGoodsOrderService;
+import com.trash.collection.trash.score.service.ScoreDetailService;
 import com.trash.collection.trash.score.service.ScoreUserService;
+import com.trash.collection.trash.user.VO.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +62,11 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
     @Autowired
     private WorkerMessageService workerMessageService;
 
+    @Autowired
+    private ScoreDetailService scoreDetailService;
+
+    UserInfo userInfo = NotLoginedDotGo.getUser();
+
     /**
      * 获取捐赠信息列表
      */
@@ -85,7 +94,30 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
         this.updateUserScore(donationGoods);
         //更新捐赠物品订单中的获取积分
         this.updateOrderScore(donationGoods);
+        //给用户新增积分明细
+        this.setUserScoreDetail(userInfo.getId(),donationGoods);
 
+    }
+
+    /**
+     * 给用户新增积分明细
+     * */
+    private void setUserScoreDetail(Long userId, DonationGoods donationGoods) {
+        //查询该捐赠物品的订单id
+        //判断用户有没有下单
+        Date date = new Date();
+        DonationGoodsOrder order = goodsOrderService.selectOne(new EntityWrapper<DonationGoodsOrder>().eq("donation_goods_id", donationGoods.getId()));
+        if (Objects.isNull(order)) {
+            logger.info("该物品没有捐赠订单");
+            return;
+        }
+        ScoreDetail scoreDetail = new ScoreDetail();
+        scoreDetail.setUserId(userId);
+        scoreDetail.setDonationGoodsOrderId(order.getId());
+        scoreDetail.setScore(donationGoods.getAcquireScore());
+        scoreDetail.setCreateTime(date);
+        scoreDetail.setModifyTime(date);
+        this.scoreDetailService.insert(scoreDetail);
     }
 
     /**

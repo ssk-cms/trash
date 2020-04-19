@@ -2,13 +2,17 @@ package com.trash.collection.trash.score.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.common.NotLoginedDotGo;
 import com.trash.collection.trash.score.VO.ProductOrderVO;
 import com.trash.collection.trash.score.domain.ProductOrder;
 import com.trash.collection.trash.score.dao.ProductOrderMapper;
+import com.trash.collection.trash.score.domain.ScoreDetail;
 import com.trash.collection.trash.score.domain.ScoreUser;
 import com.trash.collection.trash.score.service.ProductOrderService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.trash.collection.trash.score.service.ScoreDetailService;
 import com.trash.collection.trash.score.service.ScoreUserService;
+import com.trash.collection.trash.user.VO.UserInfo;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +36,11 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
 
     @Autowired
     ScoreUserService scoreUserService;
+
+    @Autowired
+    private ScoreDetailService scoreDetailService;
+
+    UserInfo userInfo = NotLoginedDotGo.getUser();
 
     /**
      * 积分兑换商品订单列表
@@ -73,6 +82,23 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
         this.baseMapper.insert(productOrder);
         //用户剩余积分减去相应积分
         this.updateUserScore(productOrder,needPoints);
+        //记录积分详情
+        this.setUserScoreDetail(userInfo.getId(),needPoints,productOrder.getId());
+
+    }
+
+    /**
+     * 记录用户积分详情
+     * */
+    private void setUserScoreDetail(Long userId, BigDecimal needPoints, Long productOrderId) {
+        ScoreDetail scoreDetail = new ScoreDetail();
+        Date date = new Date();
+        scoreDetail.setUserId(userId);
+        scoreDetail.setScore(needPoints);
+        scoreDetail.setProductOrderId(productOrderId);
+        scoreDetail.setCreateTime(date);
+        scoreDetail.setModifyTime(date);
+        scoreDetailService.insert(scoreDetail);
     }
 
     /**

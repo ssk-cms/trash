@@ -11,5 +11,27 @@
         <result column="create_time" property="createTime"/>
         <result column="modify_time" property="modifyTime"/>
     </resultMap>
+    <select id="selectScoreDeatil" resultType="com.trash.collection.trash.score.VO.ScoreDetailVO">
+      SELECT
+        ssd.id,
+        ssd.user_id userId,
+        ssd.donation_goods_order_id donationGoodsOrderId,
+        ssd.product_order_id productOrderId,
+        ssd.score score,
+        pp.product_name productName,
+        pdg.goods_name goodsName,
+        ssd.state,
+        ssd.create_time createTime
+    FROM
+        sc_score_detail ssd
+        LEFT JOIN sc_donation_goods_order sdgo ON sdgo.id = ssd.donation_goods_order_id
+        LEFT JOIN sc_product_order spo ON spo.id = ssd.product_order_id
+        LEFT JOIN pr_product pp ON pp.id = spo.product_id
+        LEFT JOIN pr_donation_goods pdg ON pdg.id = sdgo.donation_goods_id
+    WHERE
+        ssd.user_id = #{userId}
+    ORDER BY
+        ssd.create_time DESC
+    </select>
 
 </mapper>

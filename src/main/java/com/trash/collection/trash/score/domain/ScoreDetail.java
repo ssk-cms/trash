@@ -2,6 +2,7 @@ package com.trash.collection.trash.score.domain;
 
 import com.baomidou.mybatisplus.enums.IdType;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -36,6 +37,11 @@ public class ScoreDetail implements Serializable {
     @TableField("user_id")
     private Long userId;
     /**
+     * 增减积分
+     */
+    @TableField("score")
+    private BigDecimal score;
+    /**
      * 捐赠物品订单id
      */
     @TableField("donation_goods_order_id")
@@ -45,6 +51,11 @@ public class ScoreDetail implements Serializable {
      */
     @TableField("product_order_id")
     private Long productOrderId;
+    /**
+     * 详情状态【1、捐赠物品订单；2、积分兑换订单】
+     */
+    @TableField("state")
+    private Integer state;
     /**
      * 创建时间
      */

@@ -21,6 +21,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -101,8 +103,7 @@ public class UserController {
      * 检验登录状态
      */
     @GetMapping("/verify")
-    public Response verify(HttpServletRequest request, HttpServletResponse response) {
-        String token = (String) request.getSession().getAttribute(cookieName);
+    public Response verify(@CookieValue("TRASH_TOKEN") String token, HttpServletResponse response) {
         if (Objects.isNull(token)) {
             return productKindService.judge("请重新登录");
         }
@@ -117,7 +118,7 @@ public class UserController {
             String newToken = JwtUtils.generateToken(info, prop.getPrivateKey(), prop.getExpire());
 
             // 写入cookie
-            DetailCookieUtil.set(response, cookieName, newToken, "127.0.0.1:8001", "/", 15 * 24 * 60 * 60, false);
+            DetailCookieUtil.set(response, cookieName, newToken, "127.0.0.1", "/", 15 * 24 * 60 * 60, false);
             // 已登录，返回用户信息
             return response1.setData(userVO);
         } catch (Exception e) {
