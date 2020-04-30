@@ -38,6 +38,5 @@ public class ScoreDetailController {
         response.setData(this.scoreDetailService.selectScoreDetail(userId));
         return response;
     }
-
 }
 

@@ -52,11 +52,16 @@ public class ActivityMsgController {
     @GetMapping("/list")
     public Response list(Integer pageSize, Integer pageIndex, String param, Integer state) {
         Response response = new Response();
+        System.err.println("参数的值为："+param);
         if (Objects.isNull(pageIndex) || Objects.isNull(pageSize)) {
             response.setCode(StatusCode.Invalid_Code)
                     .setStatusCode(StatusCode.Invalid_Code)
                     .setMessage("请将相关参数补充完整！");
         } else {
+            if (Objects.equals(param, " ")) {
+                param = null;
+            }
+            System.out.println(param);
             response.setData(activityMsgService.selectPage(new Page<>(pageIndex, pageSize), param, state));
         }
         return response;
@@ -74,11 +79,11 @@ public class ActivityMsgController {
 
     /**
      * 编辑活动
-     * */
+     */
     @PostMapping("/update")
-    public Response update(@RequestBody ActivityMsg activityMsg){
+    public Response update(@RequestBody ActivityMsg activityMsg) {
         Response response = new Response();
-        if (Objects.isNull(activityMsg.getId())){
+        if (Objects.isNull(activityMsg.getId())) {
             return productKindService.judgeParam();
         }
         activityMsgService.updateMsg(activityMsg);
@@ -87,11 +92,11 @@ public class ActivityMsgController {
 
     /**
      * 查看具体某一条活动信息内容
-     * */
+     */
     @GetMapping("/selectOneMsg")
-    public Response selectOneMsg(Long activityMsgId){
+    public Response selectOneMsg(Long activityMsgId) {
         Response response = new Response();
-        if (Objects.isNull(activityMsgId)){
+        if (Objects.isNull(activityMsgId)) {
             return productKindService.judgeParam();
         }
         response.setData(activityMsgService.selectById(activityMsgId));
@@ -105,23 +110,22 @@ public class ActivityMsgController {
     public Response uploadImg(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         Response response = new Response();
         //定义要上传文件 的存放路径
-        String localPath="d:/home/data/image";
+        String localPath = "d:/home/data/image";
         //获得文件名字
-        String fileName=file.getOriginalFilename();
-        fileName= FileNameUtil.getFileName(fileName);
+        String fileName = file.getOriginalFilename();
+        fileName = FileNameUtil.getFileName(fileName);
 //        File dest = new File(localPath + fileName);
-        if(FileUploadUtil.upload(file, localPath, fileName)){
+        if (FileUploadUtil.upload(file, localPath, fileName)) {
             // 将上传的文件写入到服务器端文件夹
             // 获取当前项目运气的完整url
             String requestURL = request.getRequestURL().toString();
             // 获取当前项目的请求路径url
             String requestURI = request.getRequestURI();
             // 得到去掉了uri的路径
-            String url = requestURL.substring(0, requestURL.length()-requestURI.length() + 1);
-            url="images/"+ fileName;
+            String url = requestURL.substring(0, requestURL.length() - requestURI.length() + 1);
+            url = "images/" + fileName;
             response.setData(url);
-        }
-        else {
+        } else {
             response.setMessage("图片上传失败")
                     .setCode(StatusCode.File_Upload_Fail)
                     .setStatusCode(StatusCode.File_Upload_Fail);

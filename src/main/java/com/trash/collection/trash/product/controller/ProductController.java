@@ -45,6 +45,9 @@ public class ProductController {
     @GetMapping("/productList")
     public Response productList(Integer pageIndex, Integer pageSize, String param, Integer state, Long productKindId) {
         Response response = new Response();
+        if (Objects.equals(param, " ")) {
+            param = null;
+        }
         Page<ProductVO> page = new Page<>(pageIndex, pageSize);
         response.setData(productService.productList(page, param, state, productKindId));
         return response;
@@ -52,9 +55,9 @@ public class ProductController {
 
     /**
      * 编辑商品
-     * */
+     */
     @PostMapping("/update")
-    public Response updateProduct(@RequestBody Product product){
+    public Response updateProduct(@RequestBody Product product) {
         Response response = new Response();
         productService.updateProduct(product);
         return response;
@@ -62,11 +65,11 @@ public class ProductController {
 
     /**
      * 归档商品
-     * */
+     */
     @GetMapping("/deleteProduct")
-    public Response deleteProduct(Long productId){
+    public Response deleteProduct(Long productId) {
         Response response = new Response();
-        if (Objects.isNull(productId)){
+        if (Objects.isNull(productId)) {
             return productKindService.judgeParam();
         }
         productService.deleteProduct(productId);
@@ -75,11 +78,11 @@ public class ProductController {
 
     /**
      * 查看单一商品内容
-     * */
+     */
     @GetMapping("/selectOneProduct")
-    public Response selectOneProduct(Long productId){
+    public Response selectOneProduct(Long productId) {
         Response response = new Response();
-        if (Objects.isNull(productId)){
+        if (Objects.isNull(productId)) {
             productKindService.judgeParam();
         }
         response.setData(productService.selectById(productId));

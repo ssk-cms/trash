@@ -4,8 +4,10 @@ package com.trash.collection.trash.address.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.trash.collection.trash.address.domain.UserAddress;
 import com.trash.collection.trash.address.service.UserAddressService;
+import com.trash.collection.trash.common.NotLoginedDotGo;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.service.ProductKindService;
+import com.trash.collection.trash.user.VO.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,11 +29,14 @@ public class UserAddressController {
     @Autowired
     private UserAddressService userAddressService;
 
+    UserInfo userInfo = NotLoginedDotGo.getUser();
+
     /**
      * 根据用户id查询用户地址信息
      * */
     @GetMapping("/selectByUser")
-    public Response selectByUser(int userId){
+    public Response selectByUser(){
+        Long userId = userInfo.getId();
         if(Objects.isNull(userId)){
             return this.productKindService.judgeParam();
         }
