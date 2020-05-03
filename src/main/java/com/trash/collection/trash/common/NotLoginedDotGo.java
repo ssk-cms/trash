@@ -21,7 +21,7 @@ public class NotLoginedDotGo implements HandlerInterceptor {
 
     private JwtProperties prop;
 
-    private static final ThreadLocal<UserInfo> tl = new ThreadLocal<>();
+    private static final ThreadLocal<UserInfo> threadLocal = new ThreadLocal<>();
 
     public NotLoginedDotGo(JwtProperties prop) {
         this.prop = prop;
@@ -38,8 +38,7 @@ public class NotLoginedDotGo implements HandlerInterceptor {
 
             // 传递user
 //            request.setAttribute("user", user);
-            tl.set(user);   // 不需要自己设置k值，否则开发人员自己会传错，也只有当前线程才能取到v值
-
+            threadLocal.set(user);   // 不需要自己设置k值，否则开发人员自己会传错，也只有当前线程才能取到v值
             // 放行
             return  true;
         } catch (Exception e) {
@@ -50,7 +49,7 @@ public class NotLoginedDotGo implements HandlerInterceptor {
     }
 
     public static UserInfo getUser() {
-        return tl.get();
+        return threadLocal.get();
     }
 
     @Override
@@ -60,7 +59,6 @@ public class NotLoginedDotGo implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
-
     }
 
 

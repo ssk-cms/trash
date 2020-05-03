@@ -103,12 +103,9 @@ public class WorkerMessageController {
      * 查询所有[空闲]工作人员信息
      * */
     @GetMapping("/selectWorkerMessage")
-    public Response selectWorkerMessage(int state){
-        if (Objects.isNull(state)){
-            return productKindService.judge("请输入工作人员状态");
-        }
+    public Response selectWorkerMessage(){
         Response response = new Response();
-        List<WorkerMessage> workerMessageList = this.messageService.selectList(new EntityWrapper<WorkerMessage>().eq("state",state));
+        List<WorkerMessage> workerMessageList = this.messageService.selectList(new EntityWrapper<WorkerMessage>().eq("state",1));
         response.setData(workerMessageList);
         return response;
     }

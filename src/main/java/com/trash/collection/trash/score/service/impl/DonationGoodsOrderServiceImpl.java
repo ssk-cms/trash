@@ -2,16 +2,20 @@ package com.trash.collection.trash.score.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.common.NotLoginedDotGo;
 import com.trash.collection.trash.product.domain.DonationGoods;
 import com.trash.collection.trash.product.domain.DonationLogisticsMsg;
+import com.trash.collection.trash.product.domain.WorkerMessage;
 import com.trash.collection.trash.product.service.DonationGoodsService;
 import com.trash.collection.trash.product.service.DonationLogisticsMsgService;
+import com.trash.collection.trash.product.service.WorkerMessageService;
 import com.trash.collection.trash.score.VO.DonationGoodsOrderVO;
 import com.trash.collection.trash.score.VO.UserGoodsOrderVO;
 import com.trash.collection.trash.score.domain.DonationGoodsOrder;
 import com.trash.collection.trash.score.dao.DonationGoodsOrderMapper;
 import com.trash.collection.trash.score.service.DonationGoodsOrderService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.trash.collection.trash.user.VO.UserInfo;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +47,9 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
     @Autowired
     private DonationGoodsOrderMapper orderMapper;
 
+    @Autowired
+    private WorkerMessageService workerMessageService;
+
     /**
      * 获取捐赠物品订单列表
      * */
@@ -73,8 +80,9 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
      * */
     @Override
     public Page<DonationGoodsOrder> getListByUser(UserGoodsOrderVO userGoodsOrderVO){
+        UserInfo userInfo = NotLoginedDotGo.getUser();
         Page<DonationGoodsOrder> page = new Page<>(userGoodsOrderVO.getPageIndex(),userGoodsOrderVO.getPageSize());
-        page.setRecords(this.orderMapper.getListByUser(page,userGoodsOrderVO.getUserId(),userGoodsOrderVO.getState()));
+        page.setRecords(this.orderMapper.getListByUser(page,userInfo.getId(),userGoodsOrderVO.getState()));
         return page;
     }
 
@@ -84,17 +92,32 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
     @Override
     @Transactional
     public void placeOrder(DonationGoodsOrder donationGoodsOrder){
+        UserInfo userInfo = NotLoginedDotGo.getUser();
         Date date = new Date();
         donationGoodsOrder.setCreateTime(date)
                 .setModifyTime(date)
                 .setGoodsOrderNumber(String.format("%1$s%2$s",
                         new SimpleDateFormat("yyyyMMddHHmmss").format(date), RandomStringUtils.randomNumeric(3)))
-                .setState(1);
+                .setState(1)
+                .setUserId(userInfo.getId());
         this.baseMapper.insert(donationGoodsOrder);
         //设置捐赠商品的物流信息
         this.setlogisticsMsg(donationGoodsOrder);
         //修改捐赠商品中的捐赠物品状态
         this.setGoodsLogisticsStatus(donationGoodsOrder);
+        //修改工作人员状态
+        this.updateWorkerState(donationGoodsOrder.getWorkerMessageId());
+    }
+
+    /**
+     * 修改工作人员状态为忙碌中
+     * */
+    private void updateWorkerState(Long workerMessageId) {
+        WorkerMessage workerMessage = new WorkerMessage();
+        workerMessage.setId(workerMessageId)
+                .setState(2)
+                .setModifyTime(new Date());
+        workerMessageService.updateById(workerMessage);
     }
 
     /**
@@ -130,7 +153,8 @@ public class DonationGoodsOrderServiceImpl extends ServiceImpl<DonationGoodsOrde
     private void setGoodsLogisticsStatus(DonationGoodsOrder goodsOrder) {
         DonationGoods goods = new DonationGoods().setId(goodsOrder.getDonationGoodsId())
                 .setLogisticsStatus(10)
-                .setModifyTime(new Date());
+                .setModifyTime(new Date())
+                .setState(1);
         goodsService.updateById(goods);
     }
 }

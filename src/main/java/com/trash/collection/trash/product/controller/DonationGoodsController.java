@@ -1,6 +1,7 @@
 package com.trash.collection.trash.product.controller;
 
 
+import com.trash.collection.trash.common.NotLoginedDotGo;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.VO.DonationGoodsVO;
 import com.trash.collection.trash.product.domain.DonationGoods;
@@ -8,13 +9,12 @@ import com.trash.collection.trash.product.domain.DonationLogisticsMsg;
 import com.trash.collection.trash.product.service.DonationGoodsService;
 import com.trash.collection.trash.product.service.DonationLogisticsMsgService;
 import com.trash.collection.trash.product.service.ProductKindService;
-import com.trash.collection.trash.score.domain.DonationGoodsOrder;
+import com.trash.collection.trash.user.VO.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -57,9 +57,11 @@ public class DonationGoodsController {
     @PostMapping("/setGoodsScore")
     public Response setGoodsScore(@RequestBody DonationGoods donationGoods) {
         Response response = new Response();
-        if (Objects.isNull(donationGoods.getId()) || Objects.isNull(donationGoods.getAcquireScore()) || Objects.isNull(donationGoods.getUserId())) {
+        if (Objects.isNull(donationGoods.getId()) || Objects.isNull(donationGoods.getAcquireScore())) {
             return kindService.judgeParam();
         }
+        UserInfo userInfo = NotLoginedDotGo.getUser();
+        donationGoods.setUserId(userInfo.getId());
         DonationGoods result = this.goodsService.selectById(donationGoods.getId());
         if (Objects.nonNull(result.getAcquireScore())){
             return this.kindService.judge("已为该捐赠商品设置积分，无需重复设置用户积分");
@@ -119,9 +121,11 @@ public class DonationGoodsController {
         if (Objects.isNull(donationGoodsVO)){
             return productKindService.judgeParam();
         }
-        if (Objects.isNull(donationGoodsVO.getUserId())){
+        UserInfo userInfo = NotLoginedDotGo.getUser();
+        if (Objects.isNull(userInfo.getId())){
             return productKindService.judgeParam();
         }
+        donationGoodsVO.setUserId(userInfo.getId());
         Response response = new Response();
         response.setData(goodsService.getListByUser(donationGoodsVO));
         return response;
@@ -153,6 +157,8 @@ public class DonationGoodsController {
         if (Objects.isNull(donationGoods)){
             return this.productKindService.judgeParam();
         }
+        UserInfo userInfo = NotLoginedDotGo.getUser();
+        donationGoods.setUserId(userInfo.getId());
         Response response = new Response();
         this.goodsService.add(donationGoods);
         return response;

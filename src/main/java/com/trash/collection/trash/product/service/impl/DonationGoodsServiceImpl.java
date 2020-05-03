@@ -95,7 +95,7 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
         //更新捐赠物品订单中的获取积分
         this.updateOrderScore(donationGoods);
         //给用户新增积分明细
-        this.setUserScoreDetail(userInfo.getId(),donationGoods);
+        this.setUserScoreDetail(donationGoods.getUserId(),donationGoods);
 
     }
 
@@ -139,7 +139,8 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
             BigDecimal totalscore = scoreUser.getTotalScore().add(donationGoods.getAcquireScore());
             ScoreUser score = new ScoreUser();
             score.setModifyTime(date)
-                    .setTotalScore(totalscore);
+                    .setTotalScore(totalscore)
+                    .setResiduceScore(donationGoods.getAcquireScore());
             scoreUserService.update(score, new EntityWrapper<ScoreUser>().eq("user_id", donationGoods.getUserId()));
         }
     }
@@ -174,7 +175,7 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
         //设置捐赠物品的详细物流信息
         Map<String, String> map = new HashMap<>();
         map.put("title", "已安排工作人员上门");
-        map.put("content", "已安排工作人员按照您预定的时间上门回收您捐赠的物品，如需查看工作人员信息，请在捐赠订单中查看！");
+        map.put("content", "已安排工作人员按照您预定的时间上门回收您捐赠的物品！");
         this.setlogisticsMsg(donationGoods, map);
     }
 

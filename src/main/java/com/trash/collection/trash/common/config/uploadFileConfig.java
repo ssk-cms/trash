@@ -42,15 +42,9 @@ public class uploadFileConfig extends WebMvcConfigurationSupport {
                 "/user/user/register"
         };
         String[] pathPatterns2 = new String[] {
-//                "/product/**",
+                "/product/**",
                 "/score/**",
-                "/reply/replyWrite",
-                "/article/myArticles/**",
-                "/article/articleWrite",
-                "/article/articleDeleteMarkTrue/**",
-                "/article/articleModify/**",
-                "/article/uploadImage",
-                "/common/leaveMessage",
+                "/address/**",
 
         };
         registry.addInterceptor(loginedDotGo)
@@ -75,20 +69,4 @@ public class uploadFileConfig extends WebMvcConfigurationSupport {
         configSource.registerCorsConfiguration("/**", config);
         return new CorsFilter(configSource);
     }
-
-    /*@Override
-    public void addCorsMappings(CorsRegistry registry) {
-        //设置允许跨域的路径
-        registry.addMapping("/**")
-                //设置允许跨域请求的域名
-                //当**Credentials为true时，**Origin不能为星号，需为具体的ip地址【如果接口不带cookie,ip无需设成具体ip】
-                .allowedOrigins("http://localhost:9527")
-                //是否允许证书 不再默认开启
-                .allowCredentials(true)
-                //设置允许的方法
-                .allowedMethods("*")
-                //跨域允许时间
-                .maxAge(3600);
-    }*/
-
 }

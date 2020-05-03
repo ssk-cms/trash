@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.trash.collection.trash.address.domain.UserAddress;
 import com.trash.collection.trash.address.service.UserAddressService;
 import com.trash.collection.trash.common.NotLoginedDotGo;
+import com.trash.collection.trash.common.RRException;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.service.ProductKindService;
 import com.trash.collection.trash.user.VO.UserInfo;
@@ -29,13 +30,19 @@ public class UserAddressController {
     @Autowired
     private UserAddressService userAddressService;
 
-    UserInfo userInfo = NotLoginedDotGo.getUser();
 
     /**
      * 根据用户id查询用户地址信息
      * */
     @GetMapping("/selectByUser")
     public Response selectByUser(){
+        UserInfo userInfo = NotLoginedDotGo.getUser();
+        if (Objects.isNull(userInfo)){
+            throw new RRException("请登录！");
+        }
+        if (Objects.isNull(userInfo.getId())){
+            throw new RRException("请登录！");
+        }
         Long userId = userInfo.getId();
         if(Objects.isNull(userId)){
             return this.productKindService.judgeParam();
@@ -51,12 +58,11 @@ public class UserAddressController {
      * */
     @PostMapping("/addAddress")
     public Response addAddress(@RequestBody UserAddress userAddress){
+        UserInfo userInfo = NotLoginedDotGo.getUser();
         if (Objects.isNull(userAddress)){
             return productKindService.judge("请添加相应的地址信息");
         }
-        if (Objects.isNull(userAddress.getUserId())){
-            return productKindService.judge("请输入用户id");
-        }
+        userAddress.setUserId(userInfo.getId());
         Response response = new Response();
         this.userAddressService.addAddress(userAddress);
         return response;

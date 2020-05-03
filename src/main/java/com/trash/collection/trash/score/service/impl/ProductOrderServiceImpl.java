@@ -40,7 +40,6 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
     @Autowired
     private ScoreDetailService scoreDetailService;
 
-    UserInfo userInfo = NotLoginedDotGo.getUser();
 
     /**
      * 积分兑换商品订单列表
@@ -83,7 +82,7 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
         //用户剩余积分减去相应积分
         this.updateUserScore(productOrder,needPoints);
         //记录积分详情
-        this.setUserScoreDetail(userInfo.getId(),needPoints,productOrder.getId());
+        this.setUserScoreDetail(productOrder.getUserId(),needPoints,productOrder.getId());
 
     }
 

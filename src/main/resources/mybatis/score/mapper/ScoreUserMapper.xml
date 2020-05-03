@@ -2,14 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.trash.collection.trash.score.dao.ScoreUserMapper">
 
-        <!-- 通用查询映射结果 -->
-        <resultMap id="BaseResultMap" type="com.trash.collection.trash.score.domain.ScoreUser">
-            <id column="id" property="id"/>
-            <result column="user_id" property="userId"/>
-            <result column="total_score" property="totalScore"/>
-            <result column="residuce_score" property="residuceScore"/>
-            <result column="create_time" property="createTime"/>
-            <result column="modify_time" property="modifyTime"/>
-        </resultMap>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trash.collection.trash.score.domain.ScoreUser">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="total_score" property="totalScore"/>
+        <result column="residuce_score" property="residuceScore"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+    <select id="selectUserScore" resultType="com.trash.collection.trash.score.VO.ScoreUserVO">
+        SELECT
+            residuce_score AS residuceScore
+        FROM
+            sc_score_user
+        WHERE
+            user_id = #{id}
+    </select>
 
 </mapper>

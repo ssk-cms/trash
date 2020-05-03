@@ -52,7 +52,6 @@ public class ActivityMsgController {
     @GetMapping("/list")
     public Response list(Integer pageSize, Integer pageIndex, String param, Integer state) {
         Response response = new Response();
-        System.err.println("参数的值为："+param);
         if (Objects.isNull(pageIndex) || Objects.isNull(pageSize)) {
             response.setCode(StatusCode.Invalid_Code)
                     .setStatusCode(StatusCode.Invalid_Code)
