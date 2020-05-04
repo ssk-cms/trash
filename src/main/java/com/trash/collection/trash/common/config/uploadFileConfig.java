@@ -39,10 +39,14 @@ public class uploadFileConfig extends WebMvcConfigurationSupport {
         // String[] patterns = new String[]  {"/login","/*.html","/image"};
         String[] pathPatterns = new String[] {
                 "/user/user/login",
-                "/user/user/register"
+                "/user/user/register",
+                "/product/product/productList"
         };
         String[] pathPatterns2 = new String[] {
-                "/product/**",
+                "/product/donationGoods",
+                "/product/donationLogisticsMsg",
+                "/product/productKind",
+                "/product/workerMessage",
                 "/score/**",
                 "/address/**",
 

@@ -78,7 +78,7 @@ public class UserController {
         String username = user.getUsername();
         String password = user.getPassword();
         User user1 = this.userMapper.selectByName(username);
-        if (Objects.equals(user.getStatus(), 0)) {
+        if (Objects.equals(user1.getStatus(), 0)) {
             return productKindService.judge("该用户已被禁用");
         }
         // 登录
