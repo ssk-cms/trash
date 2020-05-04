@@ -1,10 +1,14 @@
-package com.trash.collection.trash.user.domain;
+package com.trash.collection.trash.commercial.domain;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
+import java.math.BigDecimal;
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 
@@ -13,52 +17,54 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * 系统用户
+ * 商户加盟表
  *
- * @author seth
- * @since 2019-12-28
+ * @author Seth
+ * @since 2020-05-04
  */
 @Data
 @Accessors(chain = true)
-@TableName("sys_user")
-public class User implements Serializable{
+@TableName("ac_commercial_tenant")
+public class CommercialTenant implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * userId
-     * */
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer userId;
-    /**
-     * 姓名
+     * 商户id
      */
-    private String username;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
     /**
-     * 密码
+     * 商户名称
      */
-    private String password;
+    private String name;
     /**
-     * 是否是超级用户[0、是；1、不是]
-     * */
-    @TableField("is_superuser")
-    private Integer isSuperuser;
-    /**
-     * 邮箱
+     * 商户老板姓名
      */
-    private String email;
+    @TableField("boss_name")
+    private String bossName;
     /**
-     * 手机号
+     * 商户电话
      */
-    private String mobile;
+    private String phone;
     /**
-     * 盐
-     * */
-    private String salt;
-    /**
-     * 状态  0：禁用   1：正常
+     * 商户地址
      */
-    private Integer status;
+    private String address;
+    /**
+     * 回收物品类型介绍
+     */
+    @TableField("shop_introduce")
+    private String shopIntroduce;
+    /**
+     * 商户图片
+     */
+    private String images;
+    /**
+     * 信誉积分
+     */
+    @TableField("reputation_score")
+    private BigDecimal reputationScore;
     /**
      * 创建时间
      */
@@ -71,5 +77,6 @@ public class User implements Serializable{
     @TableField("modify_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date modifyTime;
+
 
 }

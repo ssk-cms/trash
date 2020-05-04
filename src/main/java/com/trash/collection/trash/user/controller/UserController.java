@@ -2,8 +2,10 @@ package com.trash.collection.trash.user.controller;
 
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.trash.collection.trash.common.RRException;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.common.utils.DetailCookieUtil;
+import com.trash.collection.trash.product.VO.PageVO;
 import com.trash.collection.trash.user.JWTUtils.JwtProperties;
 import com.trash.collection.trash.user.JWTUtils.JwtUtils;
 import com.trash.collection.trash.product.service.ProductKindService;
@@ -136,6 +138,40 @@ public class UserController {
         userVO.setUsername(userResult.getUsername());
         userVO.setIsSuperuser(userResult.getIsSuperuser());
         return userVO;
+    }
+
+    /**
+     * 管理员--查看所有用户信息
+     * */
+    @GetMapping("/getAllList")
+    public Response getAllList(PageVO pageVO,String userName){
+        Response response = new Response();
+        response.setData(this.userService.getAllList(pageVO,userName));
+        return response;
+    }
+
+    /**
+     * 管理员--禁用用户账号
+     * */
+    @GetMapping("/forbiddenUser")
+    public Response forbiddenUser(Integer userId){
+        if (Objects.isNull(userId)){
+            throw new RRException("请选择用户");
+        }
+        this.userService.forbiddenUser(userId);
+        return new Response();
+    }
+
+    /**
+     * 管理员--重置用户密码为123456
+     * */
+    @GetMapping("/resetPassword")
+    public Response resetPassword( Integer userId){
+        if (Objects.isNull(userId)){
+            throw new RRException("请选择用户!");
+        }
+        this.userService.resetPassWord(userId);
+        return new Response();
     }
 }
 

@@ -19,5 +19,22 @@
         where
         username = #{username}
     </select>
+    <select id="getAllList" resultType="com.trash.collection.trash.user.domain.User">
+        SELECT
+            user_id,
+            username,
+            is_superuser,
+            `status`,
+            create_time
+        FROM
+            sys_user
+        <where>
+            <if test="userName != null and userName != ''">
+                username LIKE CONCAT( '%', #{userName}, '%' )
+            </if>
+        </where>
+        ORDER BY
+            create_time
+    </select>
 
 </mapper>

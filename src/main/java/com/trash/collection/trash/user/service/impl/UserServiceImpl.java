@@ -1,7 +1,9 @@
 package com.trash.collection.trash.user.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.trash.collection.trash.common.RRException;
 import com.trash.collection.trash.common.utils.CodecUtils;
+import com.trash.collection.trash.product.VO.PageVO;
 import com.trash.collection.trash.user.JWTUtils.JwtProperties;
 import com.trash.collection.trash.user.JWTUtils.JwtUtils;
 import com.trash.collection.trash.user.VO.UserInfo;
@@ -134,5 +136,44 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 throw new RRException("密码请不要输入特殊字符！");
             }
         }
+    }
+
+    /**
+     * 管理员--查看所有用户信息
+     * */
+    @Override
+    public Page getAllList(PageVO pageVO, String userName){
+        Page page = new Page(pageVO.getPageIndex(),pageVO.getPageSize());
+        return page.setRecords(this.baseMapper.getAllList(page,userName));
+    }
+
+    /**
+     * 管理员--禁用用户账号
+     * */
+    @Override
+    @Transactional
+    public void forbiddenUser(Integer userId){
+        User user = new User();
+        user.setUserId(userId)
+                .setStatus(0)
+                .setModifyTime(new Date());
+        this.baseMapper.updateById(user);
+    }
+
+    /**
+     *管理员--重置用户密码为123456
+     * */
+    @Override
+    @Transactional
+    public void resetPassWord(Integer userId){
+        String password = "123456";
+        User user = new User();
+        // 生成盐
+        String salt = CodecUtils.generateSalt();
+        // 写入数据库
+        user.setPassword(CodecUtils.md5Hex(password,salt));
+        user.setUserId(userId)
+                .setModifyTime(new Date());
+        this.baseMapper.updateById(user);
     }
 }

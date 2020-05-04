@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trash.collection.trash.commercial.dao.CommercialTenantMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trash.collection.trash.commercial.domain.CommercialTenant">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="boss_name" property="bossName"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="shop_introduce" property="shopIntroduce"/>
+        <result column="images" property="images"/>
+        <result column="reputation_score" property="reputationScore"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+    <select id="getList" resultType="com.trash.collection.trash.commercial.domain.CommercialTenant">
+        SELECT
+        *
+        FROM
+        ac_commercial_tenant
+        <where>
+            <if test="param2 != null and param2 != '' ">
+                `name` LIKE CONCAT( '%', #{param2}, '%' )
+            </if>
+        </where>
+        ORDER BY
+        reputation_score DESC
+    </select>
+
+</mapper>
