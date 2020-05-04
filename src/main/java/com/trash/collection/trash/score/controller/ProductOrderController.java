@@ -45,6 +45,9 @@ public class ProductOrderController {
     @Autowired
     private ScoreUserService scoreUserService;
 
+    /**
+     * 查看积分捐赠订单列表
+     * */
     @GetMapping("/list")
     public Response list(ProductOrderVO orderVO) {
         Response response = new Response();
