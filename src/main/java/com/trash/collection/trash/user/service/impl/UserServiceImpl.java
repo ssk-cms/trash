@@ -173,6 +173,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 写入数据库
         user.setPassword(CodecUtils.md5Hex(password,salt));
         user.setUserId(userId)
+                .setModifyTime(new Date())
+                .setSalt(salt);
+        this.baseMapper.updateById(user);
+    }
+
+    /**
+     * 管理员--将普通用户设为管理员权限
+     * */
+    @Override
+    @Transactional
+    public void setSuperUser(Integer userId){
+        User user = new User();
+        user.setUserId(userId)
+                .setIsSuperuser(1)
                 .setModifyTime(new Date());
         this.baseMapper.updateById(user);
     }

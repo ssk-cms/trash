@@ -40,7 +40,7 @@ public class CommercialTenantServiceImpl extends ServiceImpl<CommercialTenantMap
      */
     @Override
     public List<CommercialTenant> getListByScore() {
-        List<CommercialTenant> commercialTenantList = this.baseMapper.selectList(new EntityWrapper<CommercialTenant>().orderBy("reputation_score", true)
+        List<CommercialTenant> commercialTenantList = this.baseMapper.selectList(new EntityWrapper<CommercialTenant>().orderBy("reputation_score", false)
                 .last("limit 4"));
         return commercialTenantList;
     }

@@ -60,7 +60,8 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
         ProductOrder order = new ProductOrder();
         order.setId(productOrder.getId())
                 .setTrackingNumber(productOrder.getTrackingNumber())
-                .setModifyTime(new Date());
+                .setModifyTime(new Date())
+                .setDeliveryTime(productOrder.getDeliveryTime());
         this.orderMapper.updateById(order);
     }
 
@@ -131,6 +132,7 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
     @Transactional
     public void gainGoods(ProductOrder productOrder){
         productOrder.setState(3)
+                .setRecvingTime(new Date())
                 .setModifyTime(new Date());
         this.baseMapper.updateById(productOrder);
     }

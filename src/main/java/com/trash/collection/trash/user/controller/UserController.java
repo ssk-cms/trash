@@ -78,7 +78,7 @@ public class UserController {
         String username = user.getUsername();
         String password = user.getPassword();
         User user1 = this.userMapper.selectByName(username);
-        if (Objects.equals(user.getStatus(), 0)) {
+        if (Objects.equals(user1.getStatus(), 0)) {
             return productKindService.judge("该用户已被禁用");
         }
         // 登录
@@ -171,6 +171,18 @@ public class UserController {
             throw new RRException("请选择用户!");
         }
         this.userService.resetPassWord(userId);
+        return new Response();
+    }
+
+    /**
+     * 管理员--将普通用户设为管理员权限
+     * */
+    @GetMapping("/setSuperUser")
+    public Response setSuperUser(Integer userId){
+        if (Objects.isNull(userId)){
+            throw new RRException("请选择用户!");
+        }
+        this.userService.setSuperUser(userId);
         return new Response();
     }
 }

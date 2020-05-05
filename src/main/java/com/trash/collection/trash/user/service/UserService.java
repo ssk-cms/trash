@@ -45,4 +45,9 @@ public interface UserService extends IService<User> {
      *管理员--重置用户密码为123456
      * */
     void resetPassWord(Integer userId);
+
+    /**
+     * 管理员--将普通用户设为管理员权限
+     * */
+    void setSuperUser(Integer userId);
 }

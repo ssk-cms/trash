@@ -137,10 +137,11 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
             this.scoreUserService.insert(scoreUser1);
         }else {
             BigDecimal totalscore = scoreUser.getTotalScore().add(donationGoods.getAcquireScore());
+            BigDecimal totalAcquireScore = scoreUser.getResiduceScore().add(donationGoods.getAcquireScore());
             ScoreUser score = new ScoreUser();
             score.setModifyTime(date)
                     .setTotalScore(totalscore)
-                    .setResiduceScore(donationGoods.getAcquireScore());
+                    .setResiduceScore(totalAcquireScore);
             scoreUserService.update(score, new EntityWrapper<ScoreUser>().eq("user_id", donationGoods.getUserId()));
         }
     }

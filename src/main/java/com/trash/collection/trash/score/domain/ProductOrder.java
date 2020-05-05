@@ -62,12 +62,14 @@ public class ProductOrder implements Serializable {
      * 发货时间
      */
     @TableField("delivery_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date deliveryTime;
     /**
      * 收货时间
      */
     @TableField("recving_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date recvingTime;
