@@ -185,5 +185,20 @@ public class UserController {
         this.userService.setSuperUser(userId);
         return new Response();
     }
+
+    /**
+     * 用户-修改自己的密码
+     * */
+    @PostMapping("/updatePassword")
+    public Response updatePassword(@RequestBody User user){
+        if (Objects.isNull(user)){
+            throw new RRException("请输入个人信息！");
+        }
+        if (Objects.isNull(user.getPassword())){
+            throw new RRException("请输入密码！");
+        }
+        this.userService.updatePassword(user);
+        return new Response();
+    }
 }
 

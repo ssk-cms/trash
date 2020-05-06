@@ -45,6 +45,8 @@ public class uploadFileConfig extends WebMvcConfigurationSupport {
                 "/product/donationGoods/**",
                 "/product/donationLogisticsMsg/**",
                 "/product/productKind/**",
+                "/user/user/updatePassword",
+                "/address/userAddress",
                 "/score/**",
                 "/address/**",
 

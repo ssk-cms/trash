@@ -1,6 +1,8 @@
 package com.trash.collection.trash.user.service.impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.fasterxml.jackson.databind.annotation.JsonTypeResolver;
+import com.trash.collection.trash.common.NotLoginedDotGo;
 import com.trash.collection.trash.common.RRException;
 import com.trash.collection.trash.common.utils.CodecUtils;
 import com.trash.collection.trash.product.VO.PageVO;
@@ -51,21 +53,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             // 生成盐
             String salt = CodecUtils.generateSalt();
             // 写入数据库
-            user.setPassword(CodecUtils.md5Hex(password,salt));
+            user.setPassword(CodecUtils.md5Hex(password, salt));
             user.setSalt(salt);
             user.setIsSuperuser(0);
             user.setStatus(1);
             user.setCreateTime(date)
                     .setModifyTime(date);
             this.baseMapper.insert(user);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RRException("注册失败");
         }
     }
 
     /**
      * 登录
-     * */
+     */
     @Override
     public String login(String username, String password) throws Exception {
         // 校验用户名和密码
@@ -81,7 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new RRException("没有该用户");
         }
 
-        String afterEncodingPwd =CodecUtils.md5Hex(password,user.getSalt());
+        String afterEncodingPwd = CodecUtils.md5Hex(password, user.getSalt());
         if (!(user.getPassword().equals(afterEncodingPwd))) {
             throw new RRException("请输入正确的密码");
         }
@@ -92,7 +94,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     /**
      * 获取公钥
-     * */
+     */
     @Override
     public UserInfo getUserInfo(String token) throws Exception {
         UserInfo info = JwtUtils.getInfoFromToken(token, prop.getPublicKey());
@@ -140,19 +142,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     /**
      * 管理员--查看所有用户信息
-     * */
+     */
     @Override
-    public Page getAllList(PageVO pageVO, String userName){
-        Page page = new Page(pageVO.getPageIndex(),pageVO.getPageSize());
-        return page.setRecords(this.baseMapper.getAllList(page,userName));
+    public Page getAllList(PageVO pageVO, String userName) {
+        Page page = new Page(pageVO.getPageIndex(), pageVO.getPageSize());
+        return page.setRecords(this.baseMapper.getAllList(page, userName));
     }
 
     /**
      * 管理员--禁用用户账号
-     * */
+     */
     @Override
     @Transactional
-    public void forbiddenUser(Integer userId){
+    public void forbiddenUser(Integer userId) {
         User user = new User();
         user.setUserId(userId)
                 .setStatus(0)
@@ -161,17 +163,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     /**
-     *管理员--重置用户密码为123456
-     * */
+     * 管理员--重置用户密码为123456
+     */
     @Override
     @Transactional
-    public void resetPassWord(Integer userId){
+    public void resetPassWord(Integer userId) {
         String password = "123456";
         User user = new User();
         // 生成盐
         String salt = CodecUtils.generateSalt();
         // 写入数据库
-        user.setPassword(CodecUtils.md5Hex(password,salt));
+        user.setPassword(CodecUtils.md5Hex(password, salt));
         user.setUserId(userId)
                 .setModifyTime(new Date())
                 .setSalt(salt);
@@ -180,14 +182,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     /**
      * 管理员--将普通用户设为管理员权限
-     * */
+     */
     @Override
     @Transactional
-    public void setSuperUser(Integer userId){
+    public void setSuperUser(Integer userId) {
         User user = new User();
         user.setUserId(userId)
                 .setIsSuperuser(1)
                 .setModifyTime(new Date());
+        this.baseMapper.updateById(user);
+    }
+
+    /**
+     * 用户-修改自己的密码
+     */
+    @Override
+    @Transactional
+    public void updatePassword(User user) {
+        UserInfo userInfo = NotLoginedDotGo.getUser();
+        user.setUserId(userInfo.getId().intValue());
+        if (user.getPassword().length() > 10) {
+            throw new RRException("密码不符合规范(密码长度不大于10）");
+        }
         this.baseMapper.updateById(user);
     }
 }

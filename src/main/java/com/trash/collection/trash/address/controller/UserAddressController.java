@@ -68,5 +68,16 @@ public class UserAddressController {
         return response;
     }
 
+    /**
+     * 用户-修改自己的地址信息
+     * */
+    @PostMapping("/update")
+    public Response update(@RequestBody UserAddress userAddress){
+        if (Objects.isNull(userAddress.getId())){
+            throw new RRException("请选择地址进行修改");
+        }
+        this.userAddressService.updateById(userAddress);
+        return new Response();
+    }
 }
 

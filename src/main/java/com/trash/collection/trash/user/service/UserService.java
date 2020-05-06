@@ -50,4 +50,9 @@ public interface UserService extends IService<User> {
      * 管理员--将普通用户设为管理员权限
      * */
     void setSuperUser(Integer userId);
+
+    /**
+     * 用户-修改自己的密码
+     * */
+    void updatePassword(User user);
 }
