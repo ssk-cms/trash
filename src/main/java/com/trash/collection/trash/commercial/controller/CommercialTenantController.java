@@ -32,7 +32,10 @@ public class CommercialTenantController {
         if (Objects.isNull(commercialTenant)) {
             throw new RRException("请填写商户信息");
         }
-        this.commercialTenantService.add(commercialTenant);
+        if (Objects.isNull(commercialTenant.getName()) || Objects.isNull(commercialTenant.getBossName()) ||Objects.isNull(commercialTenant.getPhone())){
+            throw new RRException("请完整填写商户信息！");
+        }
+            this.commercialTenantService.add(commercialTenant);
         return new Response();
     }
 
@@ -51,23 +54,23 @@ public class CommercialTenantController {
      */
     @GetMapping("/getList")
     public Response getList(PageVO pageVO, String name) {
-        if (Objects.isNull(pageVO)){
+        if (Objects.isNull(pageVO)) {
             throw new RRException("请输入页码");
         }
         Response response = new Response();
-        response.setData(this.commercialTenantService.getList(pageVO,name));
+        response.setData(this.commercialTenantService.getList(pageVO, name));
         return response;
     }
 
     /**
      * 管理员---审核给与商户信誉分
-     * */
+     */
     @PostMapping("/setScore")
-    public Response setScore(@RequestBody CommercialTenant commercialTenant){
-        if (Objects.isNull(commercialTenant)){
+    public Response setScore(@RequestBody CommercialTenant commercialTenant) {
+        if (Objects.isNull(commercialTenant)) {
             throw new RRException("请输入信誉积分");
         }
-        if (Objects.isNull(commercialTenant.getId()) || Objects.isNull(commercialTenant.getReputationScore())){
+        if (Objects.isNull(commercialTenant.getId()) || Objects.isNull(commercialTenant.getReputationScore())) {
             throw new RRException("请选择商户或重新输入积分");
         }
         this.commercialTenantService.setScore(commercialTenant);

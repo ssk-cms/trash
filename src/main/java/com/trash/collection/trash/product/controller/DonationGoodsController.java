@@ -2,6 +2,7 @@ package com.trash.collection.trash.product.controller;
 
 
 import com.trash.collection.trash.common.NotLoginedDotGo;
+import com.trash.collection.trash.common.RRException;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.VO.DonationGoodsVO;
 import com.trash.collection.trash.product.domain.DonationGoods;
@@ -156,6 +157,9 @@ public class DonationGoodsController {
     public Response add(@RequestBody DonationGoods donationGoods){
         if (Objects.isNull(donationGoods)){
             return this.productKindService.judgeParam();
+        }
+        if (Objects.isNull(donationGoods.getGoodsName())){
+            throw new RRException("请填写捐赠物品名称");
         }
         UserInfo userInfo = NotLoginedDotGo.getUser();
         donationGoods.setUserId(userInfo.getId());
