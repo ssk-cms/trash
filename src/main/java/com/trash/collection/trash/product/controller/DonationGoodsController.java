@@ -158,7 +158,7 @@ public class DonationGoodsController {
         if (Objects.isNull(donationGoods)){
             return this.productKindService.judgeParam();
         }
-        if (Objects.isNull(donationGoods.getGoodsName())){
+        if (Objects.isNull(donationGoods.getGoodsName()) || Objects.equals(donationGoods.getGoodsName(),"")){
             throw new RRException("请填写捐赠物品名称");
         }
         UserInfo userInfo = NotLoginedDotGo.getUser();
