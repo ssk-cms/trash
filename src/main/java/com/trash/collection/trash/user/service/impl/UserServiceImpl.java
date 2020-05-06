@@ -199,11 +199,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     @Transactional
     public void updatePassword(User user) {
-        UserInfo userInfo = NotLoginedDotGo.getUser();
-        user.setUserId(userInfo.getId().intValue());
         if (user.getPassword().length() > 10) {
             throw new RRException("密码不符合规范(密码长度不大于10）");
         }
+        UserInfo userInfo = NotLoginedDotGo.getUser();
+        // 生成盐
+        String salt = CodecUtils.generateSalt();
+        // 写入数据库
+        user.setPassword(CodecUtils.md5Hex(user.getPassword(), salt));
+        user.setUserId(userInfo.getId().intValue())
+                .setModifyTime(new Date())
+                .setSalt(salt);
         this.baseMapper.updateById(user);
     }
 }
