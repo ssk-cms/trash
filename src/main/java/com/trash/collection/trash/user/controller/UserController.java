@@ -173,5 +173,17 @@ public class UserController {
         this.userService.resetPassWord(userId);
         return new Response();
     }
+
+    /**
+     * 管理员--将普通用户设为管理员权限
+     * */
+    @GetMapping("/setSuperUser")
+    public Response setSuperUser(Integer userId){
+        if (Objects.isNull(userId)){
+            throw new RRException("请选择用户!");
+        }
+        this.userService.setSuperUser(userId);
+        return new Response();
+    }
 }
 

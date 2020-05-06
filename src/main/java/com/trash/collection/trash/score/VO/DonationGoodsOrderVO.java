@@ -1,5 +1,6 @@
 package com.trash.collection.trash.score.VO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.trash.collection.trash.product.VO.PageVO;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -65,6 +66,7 @@ public class DonationGoodsOrderVO extends PageVO implements Serializable {
     /**
      * 获得积分的时间
      * */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date gainScoreTime;
 
     /**

@@ -1,5 +1,6 @@
 package com.trash.collection.trash.score.VO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.trash.collection.trash.product.VO.PageVO;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -45,10 +46,12 @@ public class ProductOrderVO extends PageVO implements Serializable {
     /**
      * 发货时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date deliveryTime;
     /**
      * 收货时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date recvingTime;
     /**
      * 消费积分
@@ -65,10 +68,12 @@ public class ProductOrderVO extends PageVO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date createTime;
     /**
      * 修改时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date modifyTime;
     /**
      * 商品名称
@@ -79,7 +84,7 @@ public class ProductOrderVO extends PageVO implements Serializable {
      * */
     private String userName;
     /**
-     * 传参名称
+     * 商品名称或下单用户名称（搜索用）
      * */
     private String param;
 }

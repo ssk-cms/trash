@@ -19,6 +19,7 @@ import net.bytebuddy.description.type.TypeDescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,6 +46,9 @@ public class ProductOrderController {
     @Autowired
     private ScoreUserService scoreUserService;
 
+    /**
+     * 查看积分捐赠订单列表
+     * */
     @GetMapping("/list")
     public Response list(ProductOrderVO orderVO) {
         Response response = new Response();
@@ -82,6 +86,8 @@ public class ProductOrderController {
         Response response = new Response();
         //根据商品id查询商品兑换所需积分
         Product product = this.productService.selectById(productOrder.getProductId());
+        //根据用户下单数量计算积分
+        product.setNeedPoints(product.getNeedPoints().multiply(BigDecimal.valueOf(productOrder.getProductCount())));
         //根绝用户id查询用户当前拥有的积分
         ScoreUser scoreUser = this.scoreUserService.selectOne(new EntityWrapper<ScoreUser>().eq("user_id", productOrder.getUserId()));
         if (Objects.isNull(scoreUser)){
@@ -113,7 +119,7 @@ public class ProductOrderController {
      */
     @PostMapping("/gainGoods")
     public Response gainGoods(@RequestBody ProductOrder productOrder) {
-        if (Objects.isNull(productOrder.getId()) || Objects.isNull(productOrder.getRecvingTime())) {
+        if (Objects.isNull(productOrder.getId())) {
             return this.productKindService.judge("请填写必要信息!");
         }
         Response response = new Response();
