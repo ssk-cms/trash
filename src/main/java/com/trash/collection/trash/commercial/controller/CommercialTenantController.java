@@ -8,7 +8,9 @@ import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.VO.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.nio.cs.ext.ISCII91;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -74,6 +76,43 @@ public class CommercialTenantController {
             throw new RRException("请选择商户或重新输入积分");
         }
         this.commercialTenantService.setScore(commercialTenant);
+        return new Response();
+    }
+
+    /**
+     * 管理员--修改商户信息
+     * */
+    @PostMapping("/update")
+    public Response update(@RequestBody CommercialTenant commercialTenant){
+        if (Objects.isNull(commercialTenant)){
+            throw new RRException("请填写商户信息！");
+        }
+        if (Objects.isNull(commercialTenant.getId())){
+            throw new RRException("请选择商户！");
+        }
+        commercialTenant.setModifyTime(new Date());
+        try {
+            this.commercialTenantService.updateById(commercialTenant);
+        }catch (Exception e){
+            System.out.println("更新商户信息出错！"+e);
+        }
+        
+        return new Response();
+    }
+
+    /**
+     * 管理员--删除商户信息
+     * */
+    @PostMapping("/delete")
+    public Response delete(Long id){
+        if (Objects.isNull(id)){
+            throw new RRException("请选择商户！");
+        }
+        try {
+            this.commercialTenantService.deleteById(id);
+        }catch (Exception e){
+            System.out.println("更新商户信息出错！"+e);
+        }
         return new Response();
     }
 

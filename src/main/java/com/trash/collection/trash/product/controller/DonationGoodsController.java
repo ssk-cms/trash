@@ -161,6 +161,9 @@ public class DonationGoodsController {
         if (Objects.isNull(donationGoods.getGoodsName())){
             throw new RRException("请填写捐赠物品名称");
         }
+        if (Objects.equals(donationGoods.getDonationCount(),0)){
+            throw new RRException("捐赠物品数量不能为零！");
+        }
         UserInfo userInfo = NotLoginedDotGo.getUser();
         donationGoods.setUserId(userInfo.getId());
         Response response = new Response();
