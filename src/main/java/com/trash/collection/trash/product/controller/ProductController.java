@@ -2,6 +2,7 @@ package com.trash.collection.trash.product.controller;
 
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.trash.collection.trash.common.RRException;
 import com.trash.collection.trash.common.Response;
 import com.trash.collection.trash.product.VO.ProductVO;
 import com.trash.collection.trash.product.domain.Product;
@@ -34,6 +35,9 @@ public class ProductController {
      */
     @PostMapping("/addProduct")
     public Response addProduct(@RequestBody Product product) {
+        if (Objects.isNull(product.getProductName()) || Objects.equals(product.getProductName(),"")){
+            throw new RRException("请填写完整的商品信息");
+        }
         Response response = new Response();
         productService.addProduct(product);
         return response;

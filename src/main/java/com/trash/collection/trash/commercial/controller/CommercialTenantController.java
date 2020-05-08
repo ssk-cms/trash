@@ -34,7 +34,7 @@ public class CommercialTenantController {
         if (Objects.isNull(commercialTenant)) {
             throw new RRException("请填写商户信息");
         }
-        if (Objects.isNull(commercialTenant.getName()) || Objects.isNull(commercialTenant.getBossName()) ||Objects.isNull(commercialTenant.getPhone())){
+        if (Objects.isNull(commercialTenant.getName()) || Objects.equals(commercialTenant.getName(),"")){
             throw new RRException("请完整填写商户信息！");
         }
             this.commercialTenantService.add(commercialTenant);
