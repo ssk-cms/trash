@@ -104,12 +104,12 @@ public class CommercialTenantController {
      * 管理员--删除商户信息
      * */
     @PostMapping("/delete")
-    public Response delete(Long id){
-        if (Objects.isNull(id)){
+    public Response delete(@RequestBody CommercialTenant commercialTenant){
+        if (Objects.isNull(commercialTenant.getId())){
             throw new RRException("请选择商户！");
         }
         try {
-            this.commercialTenantService.deleteById(id);
+            this.commercialTenantService.deleteById(commercialTenant.getId());
         }catch (Exception e){
             System.out.println("更新商户信息出错！"+e);
         }
