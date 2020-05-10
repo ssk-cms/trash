@@ -9,8 +9,11 @@ import com.trash.collection.trash.score.VO.UserGoodsOrderVO;
 import com.trash.collection.trash.score.domain.DonationGoodsOrder;
 import com.trash.collection.trash.score.service.DonationGoodsOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -80,6 +83,19 @@ public class DonationGoodsOrderController {
         Response response = new Response();
         this.goodsOrderService.placeOrder(donationGoodsOrder);
         return response;
+    }
+
+    /**
+     * 用户---取消捐赠物品订单
+     * */
+    @GetMapping("/cancelOrder")
+    public Response cancelOrder(@NotNull @Validated Long id){
+        DonationGoodsOrder donationGoodsOrder = new DonationGoodsOrder();
+        donationGoodsOrder.setId(id)
+                .setState(0)
+                .setModifyTime(new Date());
+        this.goodsOrderService.updateById(donationGoodsOrder);
+        return new Response();
     }
 }
 
