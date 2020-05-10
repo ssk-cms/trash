@@ -69,19 +69,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * 登录
      */
     @Override
-    public String login(String username, String password) throws Exception {
-        // 校验用户名和密码
-        if (StringUtils.isBlank(username)) {
-            throw new RRException("请输入用户名");
-        }
-        if (StringUtils.isBlank(password)) {
-            throw new RRException("请输入密码");
-        }
-        User user = this.baseMapper.selectByName(username);
+        public String login(String username, String password) throws Exception {
+            // 校验用户名和密码
+            if (StringUtils.isBlank(username)) {
+                throw new RRException("请输入用户名");
+            }
+            if (StringUtils.isBlank(password)) {
+                throw new RRException("请输入密码");
+            }
+            User user = this.baseMapper.selectByName(username);
 
-        if (Objects.isNull(user) || StringUtils.isBlank(user.getPassword())) {
-            throw new RRException("没有该用户");
-        }
+            if (Objects.isNull(user) || StringUtils.isBlank(user.getPassword())) {
+                throw new RRException("没有该用户");
+            }
 
         String afterEncodingPwd = CodecUtils.md5Hex(password, user.getSalt());
         if (!(user.getPassword().equals(afterEncodingPwd))) {

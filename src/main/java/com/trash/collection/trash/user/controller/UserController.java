@@ -89,15 +89,7 @@ public class UserController {
         User userResult = this.userService.selectOne(new EntityWrapper<User>().eq("username", info.getUsername()));
         UserVO userVO = this.setUserVO(userResult);
         // 写入cookie
-        DetailCookieUtil.set(response, cookieName, token, "127.0.0.1", "/", 15 * 24 * 60 * 60, false);
-//        DetailCookieUtil.set(response,cookieName,token,true);
-//        Cookie cookie = new Cookie(cookieName,token);
-//        cookie.setMaxAge(15 * 24 * 60 * 60);
-//        cookie.setHttpOnly(false);
-//        cookie.setSecure(false);
-//        cookie.setDomain("localhost:9001");
-//        cookie.setPath("/");
-//        response.addCookie(cookie);
+        DetailCookieUtil.set(response, cookieName, token, "127.0.0.1", "/", 1 * 24 * 60 * 60, false);
         return response1.setData(userVO);
     }
 
@@ -120,7 +112,7 @@ public class UserController {
             String newToken = JwtUtils.generateToken(info, prop.getPrivateKey(), prop.getExpire());
 
             // 写入cookie
-            DetailCookieUtil.set(response, cookieName, newToken, "127.0.0.1", "/", 15 * 24 * 60 * 60, false);
+            DetailCookieUtil.set(response, cookieName, newToken, "127.0.0.1", "/", 1 * 24 * 60 * 60, false);
             // 已登录，返回用户信息
             return response1.setData(userVO);
         } catch (Exception e) {
