@@ -212,6 +212,19 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
         this.setlogisticsMsg(donationGoods, map);
         //更新工作人员状态
         this.setWorkerStatus(donationGoods);
+        //更新捐赠订单的状态
+        this.setupdateOrderState(donationGoods.getId());
+    }
+
+    /**
+     * 更新捐赠订单的状态
+     * */
+    private void setupdateOrderState(Long id) {
+        DonationGoodsOrder donationGoodsOrder = this.goodsOrderService.selectOne(new EntityWrapper<DonationGoodsOrder>().eq("donation_goods_id",id));
+        DonationGoodsOrder result = new DonationGoodsOrder().setId(donationGoodsOrder.getId())
+                .setState(2)
+                .setModifyTime(new Date());
+        this.goodsOrderService.updateById(result);
     }
 
     /**

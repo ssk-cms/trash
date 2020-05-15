@@ -17,9 +17,12 @@ import com.trash.collection.trash.user.VO.UserInfo;
 import com.trash.collection.trash.user.domain.User;
 import net.bytebuddy.description.type.TypeDescription;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -145,6 +148,19 @@ public class ProductOrderController {
         Page<ProductOrder> page = new Page<>(pageIndex, pageSize);
         response.setData(this.productOrderService.getListByUser(page, userId, state));
         return response;
+    }
+
+    /**
+     * 用户--取消积分捐赠订单
+     * */
+    @GetMapping("/cancelOrder")
+    public Response cancelOrder(@NotNull @Validated Long id){
+        ProductOrder productOrder = new ProductOrder();
+        productOrder.setId(id)
+                .setState(0)
+                .setModifyTime(new Date());
+        this.productOrderService.updateById(productOrder);
+        return new Response();
     }
 }
 
