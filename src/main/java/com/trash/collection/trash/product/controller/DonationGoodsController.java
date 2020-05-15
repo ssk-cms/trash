@@ -61,8 +61,6 @@ public class DonationGoodsController {
         if (Objects.isNull(donationGoods.getId()) || Objects.isNull(donationGoods.getAcquireScore())) {
             return kindService.judgeParam();
         }
-        UserInfo userInfo = NotLoginedDotGo.getUser();
-        donationGoods.setUserId(userInfo.getId());
         DonationGoods result = this.goodsService.selectById(donationGoods.getId());
         if (Objects.nonNull(result.getAcquireScore())){
             return this.kindService.judge("已为该捐赠商品设置积分，无需重复设置用户积分");
