@@ -28,10 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 服务实现类
@@ -292,5 +289,13 @@ public class DonationGoodsServiceImpl extends ServiceImpl<DonationGoodsMapper, D
                 .setCreateTime(date)
                 .setModifyTime(date);
         this.baseMapper.insert(donationGoods);
+    }
+
+    /**
+     * 获取最近一个月内捐赠物品达【10】件物品的用户id列表
+     * */
+    @Override
+    public List<Integer> getUserByScore(){
+        return this.baseMapper.getUserByScore();
     }
 }

@@ -93,6 +93,11 @@ public class DonationGoods implements Serializable{
      * */
     private Integer state;
     /**
+     * 获得奖励积分状态【0、未获取，1、已获取】
+     * */
+    @TableField("score_state")
+    private Integer scoreState;
+    /**
      * 创建时间
      */
     @TableField("create_time")

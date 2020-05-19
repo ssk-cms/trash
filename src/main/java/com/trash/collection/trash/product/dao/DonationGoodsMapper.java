@@ -29,4 +29,9 @@ public interface DonationGoodsMapper extends BaseMapper<DonationGoods> {
      */
     List<DonationGoods> getListByUser(Page<DonationGoods> page, @Param("userId") Long userId,
                                       @Param("state") Integer state, @Param("goodsName") String goodsName);
+
+    /**
+     * 获取最近一个月内捐赠物品达【10】件物品的用户id列表
+     * */
+    List<Integer> getUserByScore();
 }

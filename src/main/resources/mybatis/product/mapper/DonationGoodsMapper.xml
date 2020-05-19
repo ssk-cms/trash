@@ -54,5 +54,14 @@
         </where>
         ORDER BY create_time desc
     </select>
+    <select id="getUserByScore" resultType="java.lang.Integer">
+        SELECT
+        any_value ( user_id ) user_id
+        FROM
+        pr_donation_goods
+        WHERE
+        score_state = 0
+        AND DATE_SUB( CURDATE( ), INTERVAL 1 MONTH ) &lt;= date( create_time ) GROUP BY user_id HAVING count( * ) > 10
+    </select>
 
 </mapper>

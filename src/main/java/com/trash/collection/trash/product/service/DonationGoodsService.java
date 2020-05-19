@@ -6,6 +6,8 @@ import com.trash.collection.trash.product.VO.GoodsListVO;
 import com.trash.collection.trash.product.domain.DonationGoods;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.util.List;
+
 /**
  *  服务类
  *
@@ -48,4 +50,9 @@ public interface DonationGoodsService extends IService<DonationGoods> {
      * 新增捐赠商品信息
      * */
     void add(DonationGoods donationGoods);
+
+    /**
+     * 获取最近一个月内捐赠物品达【10】件物品的用户id列表
+     * */
+    List<Integer> getUserByScore();
 }
